@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить мероприятие</title>
+
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/jquery.orgchart.css" rel="stylesheet">
+    <script src="script/jquery.js"></script>
+    <script src="script/index.js"></script>
+    <script src="script/jquery.orgchart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div>Добавить мероприятие</div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="row h-100">
+                <form class="col-12 form-container" action="/workWithEvent/s/" method="POST">
+                    <div class="form-group">
+                        <label for="whatHappen">Мероприятие</label>
+                        <input type="text" class="form-control form-control-input" name="event" id="event" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="whereHappen">Корневая причина</label>
+                        <select class="form-control form-control-input" id="RootCauses" name="RootCauses">
+
+                            <option></option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="WhenHappen">В реализации?</label>
+                        <input type="checkbox" class="form-control" name="Implementation" id="Implementation">
+                    </div>
+                    <div class="form-group">
+                        <label for="HowOften">Ответственный</label>
+                        <input type="text" class="form-control form-control-input" name="Responsible" id="Responsible" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="HowDoYouKnow">Плановый срок</label>
+                        <input type="datetime-local" class="form-control form-control-input" name="PlanDate" id="PlanDate" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="WhyImportant">Фактический срок</label>
+                        <input type="datetime-local" class="form-control form-control-input" name="FaktDate" id="FaktDate" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="Effect">Финансирование</label>
+                        <input type="text" class="form-control form-control-input" name="Resource" id="Resource" placeholder="">
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="control-button">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class='footer'>
+        <div class="footer-container">
+            <div>Пользователь: Псарев Денис Игоревич</div>
+        </div>
+    </footer>
+</body>
+</html>

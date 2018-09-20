@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Корневая причина</title>
+
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/jquery.orgchart.css" rel="stylesheet">
+    <script src="script/jquery.js"></script>
+    <script src="script/index.js"></script>
+    <script src="script/jquery.orgchart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div>Корневая причина</div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="row h-100">
+                <form class="col-12 form-container" action="/problem/rC/" method="POST">
+
+                    <div class="form-group">
+                        <label for="rootCaus">Корневая причина</label>
+                        <input type="text" class="form-control form-control-input" name="rootCaus" id="rootCaus" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="classifier">Классификатор</label>
+                        <select class="form-control form-control-input" id="classifier" name="classifier">
+                            {% for class in classes%}
+                            <option>{{class[0]}}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="prioritizing">Приоритезация, %</label>
+                        <input type="text" class="form-control form-control-input" name="prioritizing" id="prioritizing" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" name="submit" class="control-button" value="findRootCauses">Найти корневую причину</button>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" name="submit" class="control-button" value="saveRootCaus">Сохранить</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class='footer'>
+        <div class="footer-container">
+            <div>Пользователь: Псарев Денис Игоревич</div>
+        </div>
+    </footer>
+</body>
+</html>

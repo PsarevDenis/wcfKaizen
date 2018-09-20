@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить проблему</title>
+
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/jquery.orgchart.css" rel="stylesheet">
+    <script src="script/jquery.js"></script>
+    <script src="script/index.js"></script>
+    <script src="script/jquery.orgchart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div>Добавить проблему</div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="row h-100">
+                <form class="col-12 form-container" action="/problem/s/" method="POST">
+                    <div class="form-group">
+                        <label for="whatHappen">Что происходит?</label>
+                        <input type="text" class="form-control form-control-input" name="whatHappen" id="whatHappen" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="whereHappen">Где происходит?</label>
+                        <input type="text" class="form-control form-control-input" name="whereHappen" id="whereHappen" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="WhenHappen">Когда происходит?</label>
+                        <input type="text" class="form-control form-control-input" name="WhenHappen" id="WhenHappen" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="HowOften">Как часто?</label>
+                        <input type="text" class="form-control form-control-input" name="HowOften" id="HowOften" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="HowDoYouKnow">Откуда известно?</label>
+                        <input type="text" class="form-control form-control-input" name="HowDoYouKnow" id="HowDoYouKnow" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="WhyImportant">Почему это важно?</label>
+                        <input type="text" class="form-control form-control-input" name="WhyImportant" id="WhyImportant" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="Effect">Эффект</label>
+                        <input type="text" class="form-control form-control-input" name="Effect" id="Effect" placeholder="">
+                    </div>
+                    <div class="form-group dynamic-stuff">
+                        <label for="fakt">Факты</label>
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt" id="fakt" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="add-one">+ Добавить факт</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WasWorked">Была в работе?</label>
+                        <input type="checkbox" class="form-control" name="WasWorked" id="WasWorked">
+                    </div>
+                    <div id="checkboxWorked">
+                        <div class="form-group">
+                            <label for="HowSolveProblem">Как решали проблему?</label>
+                            <input type="text" class="form-control form-control-input" name="HowSolveProblem" id="HowSolveProblem">
+                        </div>
+                        <div class="form-group">
+                            <label for="WhatIdeasIdWorked">Какие идеи выработаны?</label>
+                            <input type="text" class="form-control form-control-input" name="WhatIdeasIdWorked" id="WhatIdeasIdWorked">
+                        </div>
+                        <div class="form-group">
+                            <label for="WhyIdeasNotImplemanted">Почему идеи не реализованы?</label>
+                            <input type="text" class="form-control form-control-input" name="WhyIdeasNotImplemanted" id="WhyIdeasNotImplemanted">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="problemText">Формулировка проблемы</label>
+                        <textarea class="form-control" rows="5" name="problemText" id="problemText" placeholder="Сформулируйте проблему"></textarea>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="control-button">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class='footer'>
+        <div class="footer-container">
+            <div>Пользователь: Псарев Денис Игоревич</div>
+        </div>
+    </footer>
+</body>
+</html>

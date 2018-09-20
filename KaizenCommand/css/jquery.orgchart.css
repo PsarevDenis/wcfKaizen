@@ -1,0 +1,120 @@
+
+div.orgChart {
+  margin : 10px;
+  padding : 20px;
+}
+
+    div.orgChart h2,
+    div.orgChart h3,
+    div.orgChart h4 {
+        margin: 0px;
+        font-size: 16px;
+        font-weight: normal;
+        min-height: 20px;
+    }
+
+        div.orgChart h2:hover,
+        div.orgChart h3:hover,
+        div.orgChart h4:hover {
+            background: #fcfaca;
+            cursor: text;
+        }
+
+div.orgChart ul {
+  list-style : none;
+  margin : 4px;
+  padding : 0px;
+  font-size : 0.8em;
+  text-align : left;
+}
+
+div.orgChart ul.stack,
+div.orgChart ul.stack ul { text-align : center; }
+
+div.orgChart table { width : 100%; }
+
+div.orgChart tr.lines td.line {
+  width : 1px;
+  height : 20px;
+}
+
+div.orgChart tr.lines td.top { border-top : 1px dashed black; }
+
+div.orgChart tr.lines td.left { border-right : 1px dashed black; }
+
+div.orgChart tr.lines td.right { border-left : 0px dashed black; }
+
+div.orgChart tr.lines td.half { width : 50%; }
+
+    div.orgChart td {
+        text-align: center;
+        vertical-align: top;
+        padding: 0px 2px;
+        background: #F1E4B3;
+        border: none;
+    }
+
+    div.orgChart div.node {
+        cursor: default;
+        border: 1px solid #e7e7e7;
+        display: inline-block;
+        padding: 5px;
+        width: 250px;
+        height: 90px;
+        background: #F26144; /* Old browsers */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F26144), color-stop(100%, #F26144)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #F26144 0%, #F26144 100%); /* Chrome10+,Safari5.1+ */
+        background: -ms-linear-gradient(top, #F26144 0%, #F26144 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #F26144 0%, #F26144 100%); /* W3C */
+        line-height: 1.3em;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        position: relative;
+        box-shadow: 1px 1px 0px #ddd;
+    }
+
+.org-add-button,
+.org-del-button,
+.org-confirm-del-button {
+  position: absolute;
+  font-size: 12px;
+}
+
+.org-add-button {
+  bottom: 3px;
+  left: 5px;
+  padding-left: 13px;
+  background: url(../fonts/add.png) no-repeat 0 3px;
+}
+
+    .org-add-button:hover,
+    .org-del-button:hover {
+        background-color: #F26144;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+
+.org-del-button {
+  background: url(../fonts/delete.png) no-repeat;
+  width: 12px;
+  height: 12px;
+  bottom: 7px;
+  right: 5px;
+}
+
+.org-input { width: 200px; }
+
+.org-confirm-del-button { display: none; }
+
+#orgChart {
+    width: auto;
+    height: auto;
+}
+
+#orgChartContainer {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: #F1E4B3;
+}
