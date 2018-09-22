@@ -8,6 +8,8 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.cookie.js"></script>
+    <script src="script/addProblem.js"></script>
     <script src="script/index.js"></script>
     <script src="script/jquery.orgchart.js"></script>
 </head>
@@ -20,38 +22,38 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="/problem/s/" method="POST">
+                <form class="col-12 form-container" action="problem.html" method="LINK">
                     <div class="form-group">
                         <label for="whatHappen">Что происходит?</label>
-                        <input type="text" class="form-control form-control-input" name="whatHappen" id="whatHappen" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="whatHappen" id="whatHappen">
                     </div>
                     <div class="form-group">
                         <label for="whereHappen">Где происходит?</label>
-                        <input type="text" class="form-control form-control-input" name="whereHappen" id="whereHappen" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="whereHappen" id="whereHappen">
                     </div>
                     <div class="form-group">
                         <label for="WhenHappen">Когда происходит?</label>
-                        <input type="text" class="form-control form-control-input" name="WhenHappen" id="WhenHappen" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="whenHappen" id="whenHappen">
                     </div>
                     <div class="form-group">
                         <label for="HowOften">Как часто?</label>
-                        <input type="text" class="form-control form-control-input" name="HowOften" id="HowOften" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="howOften" id="howOften">
                     </div>
                     <div class="form-group">
                         <label for="HowDoYouKnow">Откуда известно?</label>
-                        <input type="text" class="form-control form-control-input" name="HowDoYouKnow" id="HowDoYouKnow" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="howDoYouKnow" id="howDoYouKnow">
                     </div>
                     <div class="form-group">
                         <label for="WhyImportant">Почему это важно?</label>
-                        <input type="text" class="form-control form-control-input" name="WhyImportant" id="WhyImportant" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="whyImportant" id="whyImportant">
                     </div>
                     <div class="form-group">
                         <label for="Effect">Эффект</label>
-                        <input type="text" class="form-control form-control-input" name="Effect" id="Effect" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="effect" id="effect">
                     </div>
                     <div class="form-group dynamic-stuff">
                         <label for="fakt">Факты</label>
-                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt" id="fakt" placeholder="">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt" id="fakt">
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -62,21 +64,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="WasWorked">Была в работе?</label>
-                        <input type="checkbox" class="form-control" name="WasWorked" id="WasWorked">
+                        <label for="wasWarked">Была в работе?</label>
+                        <input type="checkbox" class="form-control" name="wasWarked" id="wasWarked">
                     </div>
                     <div id="checkboxWorked">
                         <div class="form-group">
                             <label for="HowSolveProblem">Как решали проблему?</label>
-                            <input type="text" class="form-control form-control-input" name="HowSolveProblem" id="HowSolveProblem">
+                            <input type="text" class="form-control form-control-input" name="howSolveProblem" id="howSolveProblem">
                         </div>
                         <div class="form-group">
                             <label for="WhatIdeasIdWorked">Какие идеи выработаны?</label>
-                            <input type="text" class="form-control form-control-input" name="WhatIdeasIdWorked" id="WhatIdeasIdWorked">
+                            <input type="text" class="form-control form-control-input" name="whatIdeasIdWorked" id="whatIdeasIdWorked">
                         </div>
                         <div class="form-group">
                             <label for="WhyIdeasNotImplemanted">Почему идеи не реализованы?</label>
-                            <input type="text" class="form-control form-control-input" name="WhyIdeasNotImplemanted" id="WhyIdeasNotImplemanted">
+                            <input type="text" class="form-control form-control-input" name="whyIdeasNotImplemanted" id="whyIdeasNotImplemanted">
                         </div>
                     </div>
 
@@ -87,7 +89,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="control-button">Сохранить</button>
+                        <button type="submit" id="saveProblem" class="control-button">Сохранить</button>
                     </div>
                 </form>
             </div>

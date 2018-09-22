@@ -20,32 +20,27 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="/problem/rC/" method="POST">
+                <form class="col-12 form-container" action="causesConstructor.html" method="LIST">
 
                     <div class="form-group">
                         <label for="rootCaus">Корневая причина</label>
-                        <input type="text" class="form-control form-control-input" name="rootCaus" id="rootCaus" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="cause" id="cause">
                     </div>
                     <div class="form-group">
                         <label for="classifier">Классификатор</label>
                         <select class="form-control form-control-input" id="classifier" name="classifier">
-                            {% for class in classes%}
-                            <option>{{class[0]}}</option>
-                            {% endfor %}
                         </select>
 
                     </div>
                     <div class="form-group">
                         <label for="prioritizing">Приоритезация, %</label>
-                        <input type="text" class="form-control form-control-input" name="prioritizing" id="prioritizing" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="prioriti" id="prioriti">
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" name="submit" class="control-button" value="findRootCauses">Найти корневую причину</button>
-                    </div>
+                        <button type="button" class="control-button" id="saveRootCaus">Сохранить</button>
+                        <button type="submit" class="control-button">Найти корневую причину</button>
 
-                    <div class="form-group">
-                        <button type="submit" name="submit" class="control-button" value="saveRootCaus">Сохранить</button>
                     </div>
 
                 </form>

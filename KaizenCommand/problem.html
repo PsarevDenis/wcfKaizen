@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <title>Кайдзен команда: проблемы</title>
 
-    <link href="css/index.css" rel="stylesheet">
-    <link href="css/jquery.orgchart.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet"/>
+    <link href="css/jquery.orgchart.css" rel="stylesheet"/>
+    <link href="css/kaizenProblem.css" rel="stylesheet" />
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.cookie.js"></script>
+    <script src="script/kaizenProblem.js"></script>
     <script src="script/index.js"></script>
     <script src="script/jquery.orgchart.js"></script>
 </head>
@@ -20,34 +23,42 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="/kaizenIdea/0/" method="POST">
+                <form class="col-12 form-container" action="kaizenIdea.html" method="LINK">
 
                     <table id="problemTable" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Проблема</th>
-                                <th>Корневые причины   <input type="image" src="/../fonts/list_add.ico" name="submit" width="21px" height="21px" value="addRootCauses"></input></th>
+                                <th>Корневые причины</th>
                             </tr>
                         </thead>
+                        <tr>
+                            <td><a href="addProblem.html?problemId=1" class="problem-id">123</a></td>
+                            <td>Переворачивание рулонов</td>
+                            <td>
+                                <div style="margin: 15px;">
+                                    <ol class="rounded">
+                                        <li><a href="rootCauses.html?causeId=1">Cause 1</a></li>
+                                        <li><a href="rootCauses.html?causeId=2">Cause 2</a></li>
+                                        <li><a href="rootCauses.html?causeId=3">Cause 3</a></li>
+                                        <li><a href="rootCauses.html?causeId=4">Cause 4</a></li>
+                                    </ol>
+                                </div>
+                                
+                            </td>
+                        </tr>
                     </table>
 
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" name="submit" class="control-button" value="addProblem">Добавить проблему</button>
+                                <button type="button" id="addProblem" class="control-button">Добавить проблему</button>
+                                <button type="submit" class="control-button">Далее</button>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" name="submit" class="control-button" value="kaizenIdea">Далее</button>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    
                 </form>
             </div>
 

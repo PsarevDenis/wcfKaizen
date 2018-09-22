@@ -36,8 +36,8 @@ $(document).ready(function () {
             else {
 
 
-                de.attr("id", de.attr('id') + "_" + i);
-                de.attr("name", de.attr('name') + "_" + i);
+                de.attr("id", de.attr('id') + i);
+                de.attr("name", de.attr('name') + i);
                 de.appendTo('.dynamic-stuff').show();
                 attach_delete();
             }

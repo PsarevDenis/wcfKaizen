@@ -624,9 +624,11 @@ namespace wcfKaizen
             }
         }
 
-        public int SetProblems(string problemText, string whatHappen, string whereHappen, string whenHappen, string howOften, string howDoYouKnow, string whyImportant, bool wasWarked, string effect,
-            string fakt1, string fakt2, string fakt3, string fakt4, string fakt5, string howSolveProblem, string whatIdeasIdWorked, string whyIdeasNotImplemanted, int commandId)
+        public int SetProblems(Stream input)
         {
+            string body = new StreamReader(input).ReadToEnd();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(body);
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -634,24 +636,24 @@ namespace wcfKaizen
                 cmd.CommandText = "SetProblems";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
-                cmd.Parameters.Add("@problemText", SqlDbType.NVarChar).Value = problemText;
-                cmd.Parameters.Add("@whatHappen", SqlDbType.NVarChar).Value = whatHappen;
-                cmd.Parameters.Add("@whereHappen", SqlDbType.NVarChar).Value = whereHappen;
-                cmd.Parameters.Add("@whenHappen", SqlDbType.NVarChar).Value = whenHappen;
-                cmd.Parameters.Add("@howOften", SqlDbType.NVarChar).Value = howOften;
-                cmd.Parameters.Add("@howDoYouKnow", SqlDbType.NVarChar).Value = howDoYouKnow;
-                cmd.Parameters.Add("@whyImportant", SqlDbType.NVarChar).Value = whyImportant;
-                cmd.Parameters.Add("@wasWarked", SqlDbType.Bit).Value = wasWarked == true ? 1 : 0;
-                cmd.Parameters.Add("@effect", SqlDbType.NVarChar).Value = effect;
-                cmd.Parameters.Add("@fakt1", SqlDbType.NVarChar).Value = fakt1;
-                cmd.Parameters.Add("@fakt2", SqlDbType.NVarChar).Value = fakt2;
-                cmd.Parameters.Add("@fakt3", SqlDbType.NVarChar).Value = fakt3;
-                cmd.Parameters.Add("@fakt4", SqlDbType.NVarChar).Value = fakt4;
-                cmd.Parameters.Add("@fakt5", SqlDbType.NVarChar).Value = fakt5;
-                cmd.Parameters.Add("@howSolveProblem", SqlDbType.NVarChar).Value = howSolveProblem;
-                cmd.Parameters.Add("@whatIdeasIdWorked", SqlDbType.NVarChar).Value = whatIdeasIdWorked;
-                cmd.Parameters.Add("@whyIdeasNotImplemanted", SqlDbType.NVarChar).Value = whyIdeasNotImplemanted;
-                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = commandId;
+                cmd.Parameters.Add("@problemText", SqlDbType.NVarChar).Value = nvc["problemText"];
+                cmd.Parameters.Add("@whatHappen", SqlDbType.NVarChar).Value = nvc["whatHappen"];
+                cmd.Parameters.Add("@whereHappen", SqlDbType.NVarChar).Value = nvc["whereHappen"];
+                cmd.Parameters.Add("@whenHappen", SqlDbType.NVarChar).Value = nvc["whenHappen"];
+                cmd.Parameters.Add("@howOften", SqlDbType.NVarChar).Value = nvc["howOften"];
+                cmd.Parameters.Add("@howDoYouKnow", SqlDbType.NVarChar).Value = nvc["howDoYouKnow"];
+                cmd.Parameters.Add("@whyImportant", SqlDbType.NVarChar).Value = nvc["whyImportant"];
+                cmd.Parameters.Add("@wasWarked", SqlDbType.Bit).Value = bool.Parse(nvc["wasWarked"]) == true ? 1 : 0;
+                cmd.Parameters.Add("@effect", SqlDbType.NVarChar).Value = nvc["effect"];
+                cmd.Parameters.Add("@fakt1", SqlDbType.NVarChar).Value = nvc["fakt1"];
+                cmd.Parameters.Add("@fakt2", SqlDbType.NVarChar).Value = nvc["fakt2"];
+                cmd.Parameters.Add("@fakt3", SqlDbType.NVarChar).Value = nvc["fakt3"];
+                cmd.Parameters.Add("@fakt4", SqlDbType.NVarChar).Value = nvc["fakt4"];
+                cmd.Parameters.Add("@fakt5", SqlDbType.NVarChar).Value = nvc["fakt5"];
+                cmd.Parameters.Add("@howSolveProblem", SqlDbType.NVarChar).Value = nvc["howSolveProblem"];
+                cmd.Parameters.Add("@whatIdeasIdWorked", SqlDbType.NVarChar).Value = nvc["whatIdeasIdWorked"];
+                cmd.Parameters.Add("@whyIdeasNotImplemanted", SqlDbType.NVarChar).Value = nvc["whyIdeasNotImplemanted"];
+                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = nvc["commandId"];
 
                 cmd.Parameters.Add("@return_value", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 
@@ -668,8 +670,11 @@ namespace wcfKaizen
 
         }
 
-        public int SetRootCauses(int problemId, string cause, string classifier, float prioriti)
+        public int SetRootCauses(Stream input)
         {
+            string body = new StreamReader(input).ReadToEnd();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(body);
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -677,10 +682,10 @@ namespace wcfKaizen
                 cmd.CommandText = "SetRootCauses";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
-                cmd.Parameters.Add("@problemId", SqlDbType.Int).Value = problemId;
-                cmd.Parameters.Add("@cause", SqlDbType.NVarChar).Value = cause;
-                cmd.Parameters.Add("@classifier", SqlDbType.NVarChar).Value = classifier;
-                cmd.Parameters.Add("@prioriti", SqlDbType.Float).Value = prioriti;
+                cmd.Parameters.Add("@problemId", SqlDbType.Int).Value = nvc["problemId"];
+                cmd.Parameters.Add("@cause", SqlDbType.NVarChar).Value = nvc["cause"];
+                cmd.Parameters.Add("@classifierId", SqlDbType.Int).Value = nvc["classifier"];
+                cmd.Parameters.Add("@prioriti", SqlDbType.Float).Value = nvc["prioriti"];
 
                 cmd.Parameters.Add("@return_value", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 

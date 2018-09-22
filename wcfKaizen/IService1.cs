@@ -82,13 +82,12 @@ namespace wcfKaizen
         int SetKaizenCommand(Stream input);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SetProblems")]
-        int SetProblems(string problemText, string whatHappen, string whereHappen, string whenHappen, string howOften, string howDoYouKnow, string whyImportant, bool wasWarked, string effect,
-                    string fakt1, string fakt2, string fakt3, string fakt4, string fakt5, string howSolveProblem, string whatIdeasIdWorked, string whyIdeasNotImplemanted, int commandId);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetProblems")]
+        int SetProblems(Stream input);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SetRootCauses")]
-        int SetRootCauses(int problemId, string cause, string classifier, float prioriti);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetProblems")]
+        int SetRootCauses(Stream input);
     }
 
     [DataContract]
