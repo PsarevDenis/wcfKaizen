@@ -21,15 +21,22 @@
 
     $('#formSub').on('click', function () {
         var dataToBeSent = $("form").serialize();
-        
+
         $.post("http://localhost:64378/Service1.svc/SetKaizenCommand", dataToBeSent, function (data, textStatus) {
             
             if (textStatus === "success") {
                 var commandId = $(data).children().html();
-                console.log(commandId);
-                dataToBeSent + "&commandId=" + commandId;
+                var n = dataToBeSent.indexOf("member");
+                var res = dataToBeSent.substring(n);
+                dataToBeSent = res + "&commandId=" + commandId;
+                                
                 $.post("http://localhost:64378/Service1.svc/SetCommandMembers", dataToBeSent, function (data, textStatus) {
-                    
+                    if (textStatus === "success") {
+                        $.cookie('commandId', commandId, {
+                            expires: 5
+                        });
+                        alert("Команда создана!");
+                    }
                 });
             }
         });

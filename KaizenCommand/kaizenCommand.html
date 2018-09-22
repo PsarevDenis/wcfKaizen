@@ -8,6 +8,7 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.cookie.js"></script>
     <script src="script/index.js"></script>
     <script src="script/kaizenCommand.js"></script>
     <script src="script/jquery.orgchart.js"></script>
@@ -24,8 +25,7 @@
                 <form class="col-12 form-container" action="problem.html" method="LINK">
                     <div class="form-group">
                         <label for="departmentId">Производство, цех</label>
-                        <select class="form-control form-control-input" id="departmentId" name="departmentId">
-                        </select>
+                        <select class="form-control form-control-input" id="departmentId" name="departmentId"></select>
 
                     </div>
                     <div class="form-group">
@@ -34,8 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label for="commandTypeId">Уровень Кайдзен команды</label>
-                        <select class="form-control form-control-input" id="commandTypeId" name="commandTypeId">
-                        </select>
+                        <select class="form-control form-control-input" id="commandTypeId" name="commandTypeId"></select>
 
                     </div>
                     <div class="form-group">
@@ -65,10 +64,9 @@
                     </div>
 
                     <div class="form-group">
+                        <button type="button" class="control-button" id="formSub">Сохранить</button>
                         <button class="control-button" id="submit" value="problem">Далее</button>
                     </div>
-
-                    <a id="formSub" href="#">Submit</a>
                 </form>
             </div>
 
