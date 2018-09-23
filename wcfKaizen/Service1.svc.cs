@@ -645,11 +645,11 @@ namespace wcfKaizen
                 cmd.Parameters.Add("@whyImportant", SqlDbType.NVarChar).Value = nvc["whyImportant"];
                 cmd.Parameters.Add("@wasWarked", SqlDbType.Bit).Value = bool.Parse(nvc["wasWarked"]) == true ? 1 : 0;
                 cmd.Parameters.Add("@effect", SqlDbType.NVarChar).Value = nvc["effect"];
-                cmd.Parameters.Add("@fakt1", SqlDbType.NVarChar).Value = nvc["fakt1"];
-                cmd.Parameters.Add("@fakt2", SqlDbType.NVarChar).Value = nvc["fakt2"];
-                cmd.Parameters.Add("@fakt3", SqlDbType.NVarChar).Value = nvc["fakt3"];
-                cmd.Parameters.Add("@fakt4", SqlDbType.NVarChar).Value = nvc["fakt4"];
-                cmd.Parameters.Add("@fakt5", SqlDbType.NVarChar).Value = nvc["fakt5"];
+                cmd.Parameters.Add("@fakt1", SqlDbType.NVarChar).Value = nvc["fakt"];
+                cmd.Parameters.Add("@fakt2", SqlDbType.NVarChar).Value = nvc["fakt1"];
+                cmd.Parameters.Add("@fakt3", SqlDbType.NVarChar).Value = nvc["fakt2"];
+                cmd.Parameters.Add("@fakt4", SqlDbType.NVarChar).Value = nvc["fakt3"];
+                cmd.Parameters.Add("@fakt5", SqlDbType.NVarChar).Value = nvc["fakt4"];
                 cmd.Parameters.Add("@howSolveProblem", SqlDbType.NVarChar).Value = nvc["howSolveProblem"];
                 cmd.Parameters.Add("@whatIdeasIdWorked", SqlDbType.NVarChar).Value = nvc["whatIdeasIdWorked"];
                 cmd.Parameters.Add("@whyIdeasNotImplemanted", SqlDbType.NVarChar).Value = nvc["whyIdeasNotImplemanted"];

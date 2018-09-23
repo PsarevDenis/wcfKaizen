@@ -86,7 +86,7 @@ namespace wcfKaizen
         int SetProblems(Stream input);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetProblems")]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetRootCauses")]
         int SetRootCauses(Stream input);
     }
 

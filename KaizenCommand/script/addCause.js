@@ -21,7 +21,7 @@ $(document).ready(function () {
         });
     });
     
-    $('#saveRootCaus').on('click', function () {
+    $('#saveRootCause').on('click', function () {
         var dataToBeSent = $("form").serialize();
         dataToBeSent = dataToBeSent + '&problemId=' + problemId;
 
