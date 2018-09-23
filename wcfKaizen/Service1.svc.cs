@@ -295,7 +295,7 @@ namespace wcfKaizen
                 SqlCommand cmd = new SqlCommand();
                 SqlDataReader reader;
 
-                cmd.CommandText = "GetListEvents";
+                cmd.CommandText = "GetListGoals";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
                 cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = commandId;
@@ -308,8 +308,8 @@ namespace wcfKaizen
                 {
                     list.Add(new KaizenGoals()
                     {
-                        GoalId = int.Parse(reader["id"].ToString()),
-                        WhatEliminate = reader["Event"].ToString(),
+                        GoalId = int.Parse(reader["Id"].ToString()),
+                        WhatEliminate = reader["WhatEliminate"].ToString(),
                         Measure = reader["Measure"].ToString(),
                         Result = reader["Result"].ToString(),
                         WhenGetResult = reader["WhenGetResult"].ToString(),
@@ -556,8 +556,11 @@ namespace wcfKaizen
             }
         }
 
-        public int SetGoals(string whatEliminate, string measure, string result, string whenGetResult, string goalText, int commandId, bool goalAchieved, string comment)
+        public int SetGoals(Stream input)
         {
+            string body = new StreamReader(input).ReadToEnd();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(body);
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -565,14 +568,14 @@ namespace wcfKaizen
                 cmd.CommandText = "SetGoals";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
-                cmd.Parameters.Add("@whatEliminate", SqlDbType.NVarChar).Value = whatEliminate;
-                cmd.Parameters.Add("@measure", SqlDbType.NVarChar).Value = measure;
-                cmd.Parameters.Add("@result", SqlDbType.NVarChar).Value = result;
-                cmd.Parameters.Add("@whenGetResult", SqlDbType.NVarChar).Value = whenGetResult;
-                cmd.Parameters.Add("@goalText", SqlDbType.NVarChar).Value = goalText;
-                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = commandId;
-                cmd.Parameters.Add("@goalAchieved", SqlDbType.Bit).Value = goalAchieved == true ? 1 : 0;
-                cmd.Parameters.Add("@comment", SqlDbType.NVarChar).Value = comment;
+                cmd.Parameters.Add("@whatEliminate", SqlDbType.NVarChar).Value = nvc["whatEliminate"];
+                cmd.Parameters.Add("@measure", SqlDbType.NVarChar).Value = nvc["measure"];
+                cmd.Parameters.Add("@result", SqlDbType.NVarChar).Value = nvc["result"];
+                cmd.Parameters.Add("@whenGetResult", SqlDbType.NVarChar).Value = nvc["whenGetResult"];
+                cmd.Parameters.Add("@goalText", SqlDbType.NVarChar).Value = nvc["goalText"];
+                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = nvc["commandId"];
+                cmd.Parameters.Add("@goalAchieved", SqlDbType.Bit).Value = bool.Parse(nvc["goalAchieved"]) == true ? 1 : 0;
+                cmd.Parameters.Add("@comment", SqlDbType.NVarChar).Value = nvc["comment"];
 
                 cmd.Parameters.Add("@return_value", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
                 connection.Open();

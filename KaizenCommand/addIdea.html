@@ -8,6 +8,8 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.cookie.js"></script>
+    <script src="script/addIdea.js"></script>
     <script src="script/index.js"></script>
     <script src="script/jquery.orgchart.js"></script>
 </head>
@@ -20,32 +22,33 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="/kaizenIdea/s/" method="POST">
+                <form class="col-12 form-container" action="kaizenIdea.html" method="LINK">
                     <div class="form-group">
                         <label for="whatHappen">Что будем делать?</label>
-                        <input type="text" class="form-control form-control-input" name="WhatEliminate" id="WhatEliminate" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="whatEliminate" id="whatEliminate">
                     </div>
                     <div class="form-group">
                         <label for="whereHappen">В чем будем измерять?</label>
-                        <input type="text" class="form-control form-control-input" name="Measure" id="Measure" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="measure" id="measure">
                     </div>
                     <div class="form-group">
                         <label for="WhenHappen">Какой результат хотим получить?</label>
-                        <input type="text" class="form-control form-control-input" name="Result" id="Result" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="result" id="result">
                     </div>
                     <div class="form-group">
                         <label for="HowOften">Когда хотим его получить?</label>
-                        <input type="text" class="form-control form-control-input" name="WhenGetResult" id="WhenGetResult" placeholder="">
+                        <input type="text" class="form-control form-control-input" name="whenGetResult" id="whenGetResult">
                     </div>
 
                     <div class="form-group">
                         <label for="problemText">Цель</label>
-                        <textarea class="form-control" rows="5" name="GoalText" id="GoalText" placeholder="Сформулируйте цель"></textarea>
-
+                        <textarea class="form-control" rows="5" name="GoalText" id="goalText" placeholder="Сформулируйте цель"></textarea>
                     </div>
 
+
                     <div class="form-group">
-                        <button type="submit" class="control-button">Сохранить</button>
+                        <button type="button" class="control-button" id="saveIdea">Сохранить</button>
+                        <button type="submit" class="control-button">Назад</button>
                     </div>
                 </form>
             </div>

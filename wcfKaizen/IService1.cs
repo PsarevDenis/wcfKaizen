@@ -73,8 +73,8 @@ namespace wcfKaizen
         int SetEvent(string kaizenEvent, int rootCauseId, bool implemantation, string responsible, DateTime planDate, DateTime faktDate, string resource, int commandId);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SetGoals")]
-        int SetGoals(string whatEliminate, string measure, string result, string whenGetResult, string goalText, int commandId, bool goalAchieved, string comment);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetGoals")]
+        int SetGoals(Stream input);
 
 
         [OperationContract]

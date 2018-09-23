@@ -8,6 +8,8 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.cookie.js"></script>
+    <script src="script/kaizenIdea.js"></script>
     <script src="script/index.js"></script>
     <script src="script/jquery.orgchart.js"></script>
 </head>
@@ -25,6 +27,7 @@
                     <table id="ideaTable" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Цель</th>
                                 <th>Мера</th>
                                 <th>Результат</th>
@@ -36,8 +39,8 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" name="submit" class="control-button" value="addIdea">Поставить цель</button>
-                                <button type="submit" name="submit" class="control-button" value="kaizenEvent">Далее</button>
+                                <button type="button" class="control-button" id="addIdea">Поставить цель</button>
+                                <button type="submit" class="control-button">Далее</button>
                             </div>
                         </div>
                     </div>
