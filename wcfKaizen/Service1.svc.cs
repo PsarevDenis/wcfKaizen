@@ -129,10 +129,10 @@ namespace wcfKaizen
                     kaizenEvent.Id = eventId;
                     kaizenEvent.KaIzenEvent = reader["Event"].ToString();
                     kaizenEvent.Cause = reader["Cause"].ToString();
-                    kaizenEvent.Implementation = (int)reader["Implementation"] == 1 ? true : false;
+                    kaizenEvent.Implementation = int.Parse(reader["Implementation"].ToString()) == 1 ? true : false;
                     kaizenEvent.Responsible = reader["Responsible"].ToString();
-                    kaizenEvent.PlanDate = DateTime.Parse(reader["PlanDate"].ToString());
-                    kaizenEvent.FaktDate = DateTime.Parse(reader["FaktDate"].ToString());
+                    kaizenEvent.PlanDate = reader["PlanDate"].ToString();
+                    kaizenEvent.FaktDate = reader["FaktDate"].ToString();
                     kaizenEvent.Resource = reader["Resource"].ToString();
                 }
 
@@ -267,16 +267,15 @@ namespace wcfKaizen
                 {
                     list.Add(new KaizenEvent()
                     {
-
-                        Id = int.Parse(reader["id"].ToString()),
+                        Id = int.Parse(reader["Id"].ToString()),
                         KaIzenEvent = reader["Event"].ToString(),
                         Cause = reader["Cause"].ToString(),
-                        Implementation = (int)reader["Implementation"] == 1 ? true : false,
+                        Implementation = bool.Parse(reader["Implementation"].ToString()),
                         Responsible = reader["Responsible"].ToString(),
-                        PlanDate = DateTime.Parse(reader["PlanDate"].ToString()),
-                        FaktDate = DateTime.Parse(reader["FaktDate"].ToString()),
+                        PlanDate = reader["PlanDate"].ToString(),
+                        FaktDate = reader["FaktDate"].ToString(),
                         Resource = reader["Resource"].ToString()
-                    });
+                });
                 }
 
                 connection.Close();
@@ -371,6 +370,40 @@ namespace wcfKaizen
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
                 cmd.Parameters.Add("@problemId", SqlDbType.Int).Value = problemId;
+
+                connection.Open();
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    list.Add(new KaizenRootCauses()
+                    {
+                        CauseId = int.Parse(reader["id"].ToString()),
+                        Cause = reader["Cause"].ToString()
+                    });
+                }
+
+                connection.Close();
+
+            }
+
+            return list;
+        }
+
+        public List<KaizenRootCauses> GetListRootCause(int commandId)
+        {
+            List<KaizenRootCauses> list = new List<KaizenRootCauses>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader reader;
+
+                cmd.CommandText = "GetListRootCausesByCommandId";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = connection;
+                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = commandId;
 
                 connection.Open();
 
@@ -523,8 +556,11 @@ namespace wcfKaizen
             }
         }
 
-        public int SetEvent(string kaizenEvent, int rootCauseId, bool implemantation, string responsible, DateTime planDate, DateTime faktDate, string resource, int commandId)
+        public int SetEvent(Stream input)
         {
+            string body = new StreamReader(input).ReadToEnd();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(body);
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -532,14 +568,14 @@ namespace wcfKaizen
                 cmd.CommandText = "SetEvent";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
-                cmd.Parameters.Add("@event", SqlDbType.NVarChar).Value = kaizenEvent;
-                cmd.Parameters.Add("@rootCauseId", SqlDbType.Int).Value = rootCauseId;
-                cmd.Parameters.Add("@implemantation", SqlDbType.Bit).Value = implemantation == true ? 1 : 0;
-                cmd.Parameters.Add("@responsible", SqlDbType.NVarChar).Value = responsible;
-                cmd.Parameters.Add("@planDate", SqlDbType.DateTime).Value = planDate;
-                cmd.Parameters.Add("@faktDate", SqlDbType.DateTime).Value = faktDate;
-                cmd.Parameters.Add("@resource", SqlDbType.NVarChar).Value = resource;
-                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = commandId;
+                cmd.Parameters.Add("@event", SqlDbType.NVarChar).Value = nvc["kaizenEvent"];
+                cmd.Parameters.Add("@rootCauseId", SqlDbType.Int).Value = nvc["rootCauseId"];
+                cmd.Parameters.Add("@implemantation", SqlDbType.Bit).Value = bool.Parse(nvc["implemantation"]) == true ? 1 : 0;
+                cmd.Parameters.Add("@responsible", SqlDbType.NVarChar).Value = nvc["responsible"];
+                cmd.Parameters.Add("@planDate", SqlDbType.Date).Value = nvc["planDate"];
+                cmd.Parameters.Add("@faktDate", SqlDbType.Date).Value = nvc["faktDate"];
+                cmd.Parameters.Add("@resource", SqlDbType.NVarChar).Value = nvc["resource"];
+                cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = nvc["commandId"];
 
                 cmd.Parameters.Add("@return_value", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
 

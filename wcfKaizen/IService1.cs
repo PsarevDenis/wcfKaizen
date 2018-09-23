@@ -57,6 +57,10 @@ namespace wcfKaizen
         List<KaizenRootCauses> GetListRootCauses(int problemId);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetListRootCause?commandId={commandId}")]
+        List<KaizenRootCauses> GetListRootCause(int commandId);
+
+        [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetProblem?problemId={problemId}")]
         KaizenProblem GetProblem(int problemId);
 
@@ -69,8 +73,8 @@ namespace wcfKaizen
         int SetCommandMembers(Stream input);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "SetEvent")]
-        int SetEvent(string kaizenEvent, int rootCauseId, bool implemantation, string responsible, DateTime planDate, DateTime faktDate, string resource, int commandId);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetEvent")]
+        int SetEvent(Stream input);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "/SetGoals")]
@@ -663,8 +667,8 @@ namespace wcfKaizen
         private string cause;
         private bool implementation;
         private string responsible;
-        private DateTime planDate;
-        private DateTime faktDate;
+        private string planDate;
+        private string faktDate;
         private string resource;
 
         [DataMember]
@@ -738,7 +742,7 @@ namespace wcfKaizen
         }
 
         [DataMember]
-        public DateTime PlanDate
+        public string PlanDate
         {
             get
             {
@@ -752,7 +756,7 @@ namespace wcfKaizen
         }
 
         [DataMember]
-        public DateTime FaktDate
+        public string FaktDate
         {
             get
             {

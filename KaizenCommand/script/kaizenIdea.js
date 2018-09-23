@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
 
     var commandId = $.cookie('commandId');
-    console.log(commandId);
 
     $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId, function (data) {
 
@@ -15,7 +14,7 @@
             var whenGetResult = val['WhenGetResult'];
             var goalText = val['GoalText'];
 
-            var newRow = '<tr><td> <a href="addProblem.html?problemId=' + ideaId + '" class="problem-id">' + ideaId + '</a></td><td>' + goalText + '</td><td>' + measure + '</td><td>' + result + '</td><td>' + whenGetResult +'</td></tr>';
+            var newRow = '<tr><td> <a href="addIdea.html?commandId=' + ideaId + '" class="problem-id">' + ideaId + '</a></td><td>' + goalText + '</td><td>' + measure + '</td><td>' + result + '</td><td>' + whenGetResult +'</td></tr>';
 
             $('#ideaTable').append(newRow);
         });
