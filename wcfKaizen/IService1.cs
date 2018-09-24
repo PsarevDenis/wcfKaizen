@@ -17,6 +17,10 @@ namespace wcfKaizen
         List<Department> GetDepartment();
 
         [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetListKaizenCommand")]
+        List<KaizenCommand> GetListKaizenCommand();
+
+        [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetClassifier")]
         List<Classifier> GetClassifier();
 
@@ -99,7 +103,7 @@ namespace wcfKaizen
     {
         private int causeId;
         private string cause;
-        private string classifier;
+        private int classifier;
         private float prioritizing;
 
         [DataMember]
@@ -131,7 +135,7 @@ namespace wcfKaizen
         }
 
         [DataMember]
-        public string Classifier
+        public int Classifier
         {
             get
             {

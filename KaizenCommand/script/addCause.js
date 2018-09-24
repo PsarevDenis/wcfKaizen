@@ -11,6 +11,26 @@
 $(document).ready(function () {
 
     var problemId = $.urlParam('problemId');
+    var causeId = $.urlParam('causeId');
+
+    if (causeId !== null) {
+        $.getJSON("http://localhost:64378/Service1.svc/GetRootCauses?idCause=" + causeId, function (data) {
+            $.each(data['GetRootCausesResult'], function (key, val) {
+                switch (key) {
+                    case 'Cause':
+                        $('#cause').val(val);
+                        break;
+                    case 'Classifier':
+                        $('#classifier').val(val);
+                        break;
+                    case 'Prioritizing':
+                        $('#prioriti').val(val);
+                        break;
+                    default:
+                }
+            });
+        });
+    }
 
     $.getJSON("http://localhost:64378/Service1.svc/GetClassifier", function (data) {
         $.each(data['GetClassifierResult'], function (key, val) {
@@ -31,6 +51,11 @@ $(document).ready(function () {
                 alert("Причина добавлена!");
             }
         });
+
+    });
+
+    $('#findRootCause').on('click', function () {
+        location.href = 'causesConstructor.html';
 
     });
 });

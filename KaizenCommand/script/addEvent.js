@@ -10,7 +10,7 @@
 
 $(document).ready(function () {
 
-    var commandId = $.cookie('commandId');
+    var commandId = localStorage.getItem('commandId');
 
     var ckbox = $('#implemantation');
     var implemantation = false;
@@ -22,8 +22,6 @@ $(document).ready(function () {
             implemantation = false;
         }
     });
-
-    console.log(commandId);
 
     $.getJSON("http://localhost:64378/Service1.svc/GetListRootCause?commandId=" + commandId, function (data) {
         $.each(data['GetListRootCauseResult'], function (key, val) {

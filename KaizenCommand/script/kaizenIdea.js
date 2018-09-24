@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    var commandId = $.cookie('commandId');
+    var commandId = localStorage.getItem('commandId');
 
     $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId, function (data) {
 

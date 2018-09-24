@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
 
+    var count = 1;
+
+    $.ajaxSetup({
+        async: false
+    });
+
     $.getJSON("http://localhost:64378/Service1.svc/GetDepartment", function (data) {
         $.each(data['GetDepartmentResult'], function (key, val) {
             $('#departmentId')
@@ -19,6 +25,83 @@
         });
     });
 
+    var commandId = localStorage.getItem('commandId');
+    if (commandId !== 0) {
+       
+        $.getJSON("http://localhost:64378/Service1.svc/GetKaizenCommand?commandId=" + commandId, function (data) {
+
+            $.each(data['GetKaizenCommandResult'], function (key, val) {
+                
+                switch (key) {
+                    case 'CommandName':
+                        $('#commandName').val(val);
+                        break;
+                    case 'DepartmentId':
+                        $('#departmentId').val(val);
+                        break;
+                    case 'Customer':
+                        $('#customer').val(val);
+                        break;
+                    case 'Leader':
+                        $('#leader').val(val);
+                        break;
+                    case 'CommandTypeId':
+                        $('#commandTypeId').val(val);
+                        break;
+                    case 'Subject':
+                        $('#subject').val(val);
+                        break;
+                    default:
+                }
+                
+            });
+            
+        });
+
+        $.getJSON("http://localhost:64378/Service1.svc/GetKaizenCommandMembers?commandId=" + commandId, function (data) {
+
+            var de = $('.dynamic-element').first();
+            var i = 0;
+
+            $.each(data['GetKaizenCommandMembersResult'], function (key, val) {
+                if (i === 0) {
+                    de.val(val['Member']);
+                }
+                else {
+                    var newDe = de.clone();
+                    newDe.val(val['Member']);
+                    newDe.appendTo('.dynamic-stuff').show();
+                }
+                i++;
+            });
+
+        });
+
+    }
+
+    $('.add-one').click(function () {
+        var i = count++;
+        var de = $('.dynamic-element').first().clone();
+
+        if (de.attr('id') === 'member') {
+            if (i >= 12) {
+                alert("Максимальное число участников команды 12!");
+            }
+            else {
+
+                de.val("");
+                de.attr("id", de.attr('id') + "_" + i);
+                de.attr("name", de.attr('name') + "_" + i);
+                de.appendTo('.dynamic-stuff').show();
+                attach_delete();
+            }
+        }
+    });
+
+    $('#next').on('click', function () {
+        location.href = 'problem.html';
+    });
+
     $('#formSub').on('click', function () {
         var dataToBeSent = $("form").serialize();
 
@@ -32,9 +115,7 @@
                                 
                 $.post("http://localhost:64378/Service1.svc/SetCommandMembers", dataToBeSent, function (data, textStatus) {
                     if (textStatus === "success") {
-                        $.cookie('commandId', commandId, {
-                            expires: 5
-                        });
+                        $.cookie('commandId', commandId);
                         alert("Команда создана!");
                     }
                 });

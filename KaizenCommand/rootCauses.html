@@ -10,7 +10,6 @@
     <script src="script/jquery.js"></script>
     <script src="script/addCause.js"></script>
     <script src="script/jquery.cookie.js"></script>
-    <script src="script/index.js"></script>
     <script src="script/jquery.orgchart.js"></script>
 </head>
 <body>
@@ -22,7 +21,7 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="causesConstructor.html" method="LIST">
+                <form class="col-12 form-container" method="LINK">
 
                     <div class="form-group">
                         <label for="rootCaus">Корневая причина</label>
@@ -41,7 +40,7 @@
 
                     <div class="form-group">
                         <button type="button" class="control-button" id="saveRootCause">Сохранить</button>
-                        <button type="submit" class="control-button">Найти корневую причину</button>
+                        <button type="button" class="control-button" id="findRootCause">Найти корневую причину</button>
 
                     </div>
 

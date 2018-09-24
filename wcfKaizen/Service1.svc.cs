@@ -215,6 +215,39 @@ namespace wcfKaizen
             return kaizenCommand;
         }
 
+        public List<KaizenCommand> GetListKaizenCommand()
+        {
+            List<KaizenCommand> kaizenCommand = new List<KaizenCommand>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader reader;
+
+                cmd.CommandText = "GetListKaizenCommand";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = connection;
+
+                connection.Open();
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    kaizenCommand.Add(new KaizenCommand()
+                    {
+                        Id = int.Parse(reader["Id"].ToString()),
+                        CommandName = reader["commandName"].ToString()
+                    });
+                }
+
+                connection.Close();
+
+            }
+
+            return kaizenCommand;
+        }
+
         public List<KaizenCommandMembers> GetKaizenCommandMembers(int commandId)
         {
             List<KaizenCommandMembers> kaizenCommandMembers = new List<KaizenCommandMembers>();
@@ -455,16 +488,16 @@ namespace wcfKaizen
                         HowOften = reader["HowOften"].ToString(),
                         HowDoYouKnow = reader["HowDoYouKnow"].ToString(),
                         WhyImportant = reader["WhyImportant"].ToString(),
-                        WasWorked = (int)reader["WasWorked"] == 1 ? true : false,
+                        WasWorked = bool.Parse(reader["WasWorked"].ToString()),
                         Effect = reader["Effect"].ToString(),
                         Fakt1 = reader["Fakt1"].ToString(),
                         Fakt2 = reader["Fakt2"].ToString(),
                         Fakt3 = reader["Fakt3"].ToString(),
                         Fakt4 = reader["Fakt4"].ToString(),
                         Fakt5 = reader["Fakt5"].ToString(),
-                        HowSolvelem = reader["HowSolvelem"].ToString(),
-                        WhatIdeasIdWorked = reader["WhatIdeasIdWorked"].ToString(),
-                        WhyIdeasNotImplemanted = reader["WhyIdeasNotImplemanted"].ToString()
+                        HowSolvelem = reader["HowSolveProblem"] == DBNull.Value ? "" : reader["HowSolveProblem"].ToString(),
+                        WhatIdeasIdWorked = reader["WhatIdeasIdWorked"] == DBNull.Value ? "" : reader["WhatIdeasIdWorked"].ToString(),
+                        WhyIdeasNotImplemanted = reader["WhyIdeasNotImplemanted"] == DBNull.Value ? "" : reader["WhyIdeasNotImplemanted"].ToString()
                     };
                 }
 
@@ -484,7 +517,7 @@ namespace wcfKaizen
                 SqlCommand cmd = new SqlCommand();
                 SqlDataReader reader;
 
-                cmd.CommandText = "GetListRootCauses";
+                cmd.CommandText = "GetRootCauses";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
                 cmd.Parameters.Add("@idCause", SqlDbType.Int).Value = idCause;
@@ -499,7 +532,7 @@ namespace wcfKaizen
                     {
                         CauseId = idCause,
                         Cause = reader["Cause"].ToString(),
-                        Classifier = reader["Classifier"].ToString(),
+                        Classifier = int.Parse(reader["Classifier"].ToString()),
                         Prioritizing = float.Parse(reader["Prioritizing"].ToString())
                     };
                 }

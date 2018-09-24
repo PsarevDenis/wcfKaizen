@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    var commandId = $.cookie('commandId');
+    var commandId = localStorage.getItem('commandId');
 
     $.ajaxSetup({
         async: false
