@@ -18,7 +18,7 @@
             var FaktDate = val['FaktDate'].replace(/:/g, '').replace('00000', '');
             var Resource = val['Resource'];
 
-            var newRow = '<tr><td> <a href="addEvent.html?commandId=' + id + '" class="problem-id">' + id + '</a></td><td>' + KaIzenEvent + '</td><td>' + Cause + '</td><td>' + Implementation + '</td><td>' + Responsible + '</td><td>' + PlanDate + '</td><td>' + FaktDate + '</td><td>' + Resource +'</td></tr>';
+            var newRow = '<tr><td> <a href="addEvent.html?eventId=' + id + '" class="problem-id">' + id + '</a></td><td>' + KaIzenEvent + '</td><td>' + Cause + '</td><td>' + Implementation + '</td><td>' + Responsible + '</td><td>' + PlanDate + '</td><td>' + FaktDate + '</td><td>' + Resource +'</td></tr>';
 
             $('#eventTable').append(newRow);
         });

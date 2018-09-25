@@ -14,7 +14,7 @@
             var whenGetResult = val['WhenGetResult'];
             var goalText = val['GoalText'];
 
-            var newRow = '<tr><td> <a href="addIdea.html?commandId=' + ideaId + '" class="problem-id">' + ideaId + '</a></td><td>' + goalText + '</td><td>' + measure + '</td><td>' + result + '</td><td>' + whenGetResult +'</td></tr>';
+            var newRow = '<tr><td> <a href="addIdea.html?goalId=' + ideaId + '" class="problem-id">' + ideaId + '</a></td><td>' + goalText + '</td><td>' + measure + '</td><td>' + result + '</td><td>' + whenGetResult +'</td></tr>';
 
             $('#ideaTable').append(newRow);
         });

@@ -11,6 +11,40 @@
 $(document).ready(function () {
 
     var commandId = localStorage.getItem('commandId');
+    var eventId = $.urlParam('eventId');
+
+    if (eventId !== null) {
+        $.getJSON("http://localhost:64378/Service1.svc/GetEvent?eventId=" + eventId, function (data) {
+            $.each(data['GetEventResult'], function (key, val) {
+                switch (key) {
+                    case 'KaIzenEvent':
+                        $('#kaizenEvent').val(val);
+                        break;
+                    case 'Cause':
+                        $('#rootCauseId').val(val);
+                        break;
+                    case 'Implementation':
+                        var ckbox = $('#implemantation');
+                        ckbox.attr('checked', val);
+                        break;
+                    case 'Responsible':
+                        $('#responsible').val(val);
+                        break;
+                    case 'PlanDate':
+                        $('#planDate').val(val.replace(/:/g, '').replace('00000', ''));
+                        break;
+                    case 'FaktDate':
+                        $('#faktDate').val(val.replace(/:/g, '').replace('00000', ''));
+                        break;
+                    case 'Resource':
+                        $('#resource').val(val);
+                        break;
+                    default:
+                }
+            });
+
+        });
+    }
 
     var ckbox = $('#implemantation');
     var implemantation = false;

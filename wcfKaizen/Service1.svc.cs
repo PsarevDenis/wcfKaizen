@@ -129,7 +129,7 @@ namespace wcfKaizen
                     kaizenEvent.Id = eventId;
                     kaizenEvent.KaIzenEvent = reader["Event"].ToString();
                     kaizenEvent.Cause = reader["Cause"].ToString();
-                    kaizenEvent.Implementation = int.Parse(reader["Implementation"].ToString()) == 1 ? true : false;
+                    kaizenEvent.Implementation = bool.Parse(reader["Implementation"].ToString());
                     kaizenEvent.Responsible = reader["Responsible"].ToString();
                     kaizenEvent.PlanDate = reader["PlanDate"].ToString();
                     kaizenEvent.FaktDate = reader["FaktDate"].ToString();
@@ -163,7 +163,7 @@ namespace wcfKaizen
                 while (reader.Read())
                 {
                     kaizenGoals.GoalId = goalId;
-                    kaizenGoals.WhatEliminate = reader["Event"].ToString();
+                    kaizenGoals.WhatEliminate = reader["WhatEliminate"].ToString();
                     kaizenGoals.Measure = reader["Measure"].ToString();
                     kaizenGoals.Result = reader["Result"].ToString();
                     kaizenGoals.WhenGetResult = reader["WhenGetResult"].ToString();
