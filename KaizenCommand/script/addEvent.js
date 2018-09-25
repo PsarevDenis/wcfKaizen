@@ -45,6 +45,9 @@ $(document).ready(function () {
 
         });
     }
+    else {
+        eventId = 0;
+    }
 
     var ckbox = $('#implemantation');
     var implemantation = false;
@@ -84,13 +87,13 @@ $(document).ready(function () {
     
     $('#saveEvent').on('click', function () {
         var dataToBeSent = $("form").serializeArray();
-        var commandId = $.cookie('commandId');
         dataToBeSent.push({ name: 'commandId', value: commandId });
         dataToBeSent = $.grep(dataToBeSent, function (e) {
             return e.name !== 'implemantation';
         });
 
         dataToBeSent.push({ name: 'implemantation', value: implemantation });
+        dataToBeSent.push({ name: 'eventId', value: eventId });
 
         console.log(dataToBeSent);
 
@@ -100,6 +103,11 @@ $(document).ready(function () {
                 alert("Мероприятие добавлена!");
             }
         });
+
+    });
+
+    $('#back').on('click', function () {
+        location.href = 'workWithEvent.html';
 
     });
 });

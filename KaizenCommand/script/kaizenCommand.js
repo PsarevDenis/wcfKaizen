@@ -115,7 +115,7 @@
                                 
                 $.post("http://localhost:64378/Service1.svc/SetCommandMembers", dataToBeSent, function (data, textStatus) {
                     if (textStatus === "success") {
-                        $.cookie('commandId', commandId);
+                        localStorage.setItem('commandId', commandId);
                         alert("Команда создана!");
                     }
                 });

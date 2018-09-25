@@ -13,7 +13,7 @@ $(document).ready(function () {
     var problemId = $.urlParam('problemId');
 
     if (problemId !== null) {
-        
+
         $.getJSON("http://localhost:64378/Service1.svc/GetProblem?problemId=" + problemId, function (data) {
             $.each(data['GetProblemResult'], function (key, val) {
                 switch (key) {
@@ -81,6 +81,10 @@ $(document).ready(function () {
             });
         });
     }
+    else {
+
+        problemId = 0;
+    }
 
     $('#checkboxWorked').hide();
 
@@ -97,15 +101,20 @@ $(document).ready(function () {
         }
     });
 
+    $('#back').on('click', function () {
+        location.href = 'problem.html';
+    });
+
     $('#saveProblem').on('click', function () {
         var dataToBeSent = $("form").serializeArray();
-        var commandId = $.cookie('commandId');
+        var commandId = localStorage.getItem('commandId');
         dataToBeSent.push({ name: 'commandId', value: commandId });
         dataToBeSent = $.grep(dataToBeSent, function (e) {
             return e.name !== 'wasWarked';
         });
 
         dataToBeSent.push({ name: 'wasWarked', value: wasWark });
+        dataToBeSent.push({ name: 'problemId', value: problemId });
 
         $.post("http://localhost:64378/Service1.svc/SetProblems", dataToBeSent, function (data, textStatus) {
 

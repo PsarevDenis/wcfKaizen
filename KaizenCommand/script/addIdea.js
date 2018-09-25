@@ -31,12 +31,15 @@ $(document).ready(function () {
                     case 'GoalText':
                         $('#goalText').val(val);
                         break;
-                    
+
                     default:
                 }
             });
 
         });
+    }
+    else {
+        goalId = 0;
     }
 
     $('#saveIdea').on('click', function () {
@@ -45,6 +48,7 @@ $(document).ready(function () {
         dataToBeSent.push({ name: 'commandId', value: commandId });
         dataToBeSent.push({ name: 'goalAchieved', value: false });
         dataToBeSent.push({ name: 'comment', value: '' });
+        dataToBeSent.push({ name: 'goalId', value: goalId });
         
         $.post("http://localhost:64378/Service1.svc/SetGoals", dataToBeSent, function (data, textStatus) {
 
@@ -52,12 +56,10 @@ $(document).ready(function () {
                 alert("Идея добавлена!");
             }
         });
-
-
-
     });
 
-
-
+    $('#back').on('click', function () {
+        location.href = 'kaizenIdea.html';
+    });
 
 });

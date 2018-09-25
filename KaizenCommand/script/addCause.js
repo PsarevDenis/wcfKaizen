@@ -31,6 +31,9 @@ $(document).ready(function () {
             });
         });
     }
+    else {
+        causeId = 0;
+    }
 
     $.getJSON("http://localhost:64378/Service1.svc/GetClassifier", function (data) {
         $.each(data['GetClassifierResult'], function (key, val) {
@@ -43,7 +46,7 @@ $(document).ready(function () {
     
     $('#saveRootCause').on('click', function () {
         var dataToBeSent = $("form").serialize();
-        dataToBeSent = dataToBeSent + '&problemId=' + problemId;
+        dataToBeSent = dataToBeSent + '&problemId=' + problemId + '&causeId=' + causeId;
 
         $.post("http://localhost:64378/Service1.svc/SetRootCauses", dataToBeSent, function (data, textStatus) {
 
@@ -56,6 +59,11 @@ $(document).ready(function () {
 
     $('#findRootCause').on('click', function () {
         location.href = 'causesConstructor.html';
+
+    });
+
+    $('#back').on('click', function () {
+        location.href = 'problem.html';
 
     });
 });

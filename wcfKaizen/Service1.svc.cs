@@ -601,6 +601,7 @@ namespace wcfKaizen
                 cmd.CommandText = "SetEvent";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
+                cmd.Parameters.Add("@eventId", SqlDbType.Int).Value = nvc["eventId"];
                 cmd.Parameters.Add("@event", SqlDbType.NVarChar).Value = nvc["kaizenEvent"];
                 cmd.Parameters.Add("@rootCauseId", SqlDbType.Int).Value = nvc["rootCauseId"];
                 cmd.Parameters.Add("@implemantation", SqlDbType.Bit).Value = bool.Parse(nvc["implemantation"]) == true ? 1 : 0;
@@ -637,6 +638,7 @@ namespace wcfKaizen
                 cmd.CommandText = "SetGoals";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
+                cmd.Parameters.Add("@goalId", SqlDbType.Int).Value = nvc["goalId"];
                 cmd.Parameters.Add("@whatEliminate", SqlDbType.NVarChar).Value = nvc["whatEliminate"];
                 cmd.Parameters.Add("@measure", SqlDbType.NVarChar).Value = nvc["measure"];
                 cmd.Parameters.Add("@result", SqlDbType.NVarChar).Value = nvc["result"];
@@ -708,6 +710,7 @@ namespace wcfKaizen
                 cmd.CommandText = "SetProblems";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
+                cmd.Parameters.Add("@problemId", SqlDbType.Int).Value = nvc["problemId"];
                 cmd.Parameters.Add("@problemText", SqlDbType.NVarChar).Value = nvc["problemText"];
                 cmd.Parameters.Add("@whatHappen", SqlDbType.NVarChar).Value = nvc["whatHappen"];
                 cmd.Parameters.Add("@whereHappen", SqlDbType.NVarChar).Value = nvc["whereHappen"];
@@ -754,6 +757,7 @@ namespace wcfKaizen
                 cmd.CommandText = "SetRootCauses";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
+                cmd.Parameters.Add("@causeId", SqlDbType.Int).Value = nvc["causeId"];
                 cmd.Parameters.Add("@problemId", SqlDbType.Int).Value = nvc["problemId"];
                 cmd.Parameters.Add("@cause", SqlDbType.NVarChar).Value = nvc["cause"];
                 cmd.Parameters.Add("@classifierId", SqlDbType.Int).Value = nvc["classifier"];

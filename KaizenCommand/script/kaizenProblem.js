@@ -19,9 +19,11 @@
                     var causeId = val['CauseId'];
                     var cause = val['Cause'];
                     
-                    newRow += '<li><a href="rootCauses.html?causeId=' + causeId + '">' + cause + '</a></li>';
+                    newRow += '<li><a href="rootCauses.html?causeId=' + causeId + '&problemId=' + problemId + '">' + cause + '</a></li>';
                         
                 });
+
+                newRow += '<li><a href="rootCauses.html?problemId=' + problemId + '">Добавить корневую причину</a></li>';
                 
             });
 
