@@ -42,20 +42,25 @@ $(document).ready(function () {
         goalId = 0;
     }
 
-    $('#saveIdea').on('click', function () {
-        var dataToBeSent = $("form").serializeArray();
-        var commandId = localStorage.getItem('commandId');
-        dataToBeSent.push({ name: 'commandId', value: commandId });
-        dataToBeSent.push({ name: 'goalAchieved', value: false });
-        dataToBeSent.push({ name: 'comment', value: '' });
-        dataToBeSent.push({ name: 'goalId', value: goalId });
-        
-        $.post("http://localhost:64378/Service1.svc/SetGoals", dataToBeSent, function (data, textStatus) {
 
-            if (textStatus === "success") {
-                alert("Идея добавлена!");
-            }
-        });
+    $('#form').validate();
+
+    $('#saveIdea').on('click', function () {
+        if ($("#form").valid()) {
+            var dataToBeSent = $("form").serializeArray();
+            var commandId = localStorage.getItem('commandId');
+            dataToBeSent.push({ name: 'commandId', value: commandId });
+            dataToBeSent.push({ name: 'goalAchieved', value: false });
+            dataToBeSent.push({ name: 'comment', value: '' });
+            dataToBeSent.push({ name: 'goalId', value: goalId });
+
+            $.post("http://localhost:64378/Service1.svc/SetGoals", dataToBeSent, function (data, textStatus) {
+
+                if (textStatus === "success") {
+                    alert("Идея добавлена!");
+                }
+            });
+        }
     });
 
     $('#back').on('click', function () {

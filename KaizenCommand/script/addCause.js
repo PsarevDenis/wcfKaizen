@@ -43,18 +43,21 @@ $(document).ready(function () {
                     .text(val['Name']));
         });
     });
+
+    $('#form').validate();
     
     $('#saveRootCause').on('click', function () {
-        var dataToBeSent = $("form").serialize();
-        dataToBeSent = dataToBeSent + '&problemId=' + problemId + '&causeId=' + causeId;
+        if ($("#form").valid()) {
+            var dataToBeSent = $("form").serialize();
+            dataToBeSent = dataToBeSent + '&problemId=' + problemId + '&causeId=' + causeId;
 
-        $.post("http://localhost:64378/Service1.svc/SetRootCauses", dataToBeSent, function (data, textStatus) {
+            $.post("http://localhost:64378/Service1.svc/SetRootCauses", dataToBeSent, function (data, textStatus) {
 
-            if (textStatus === "success") {
-                alert("Причина добавлена!");
-            }
-        });
-
+                if (textStatus === "success") {
+                    alert("Причина добавлена!");
+                }
+            });
+        }
     });
 
     $('#findRootCause').on('click', function () {

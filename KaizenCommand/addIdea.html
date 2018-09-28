@@ -7,38 +7,45 @@
 
     <link href="css/index.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.validate.js"></script>
+    <script src="script/additional-methods.js"></script>
+    <script src="script/messages_ru.min.js"></script>
     <script src="script/addIdea.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="header-container">
-            <div>Добавить идею</div>
+            <div>Добавить задачу</div>
         </div>
     </header>
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" method="LINK">
+                <form class="col-12 form-container" id="form">
                     <div class="form-group">
-                        <label for="whatHappen">Что будем делать?</label>
-                        <input type="text" class="form-control form-control-input" name="whatEliminate" id="whatEliminate">
+                        <label for="rootCauseId">Корневая причина</label>
+                        <select class="form-control form-control-input" id="rootCauseId" name="rootCauseId" required></select>
                     </div>
                     <div class="form-group">
-                        <label for="whereHappen">В чем будем измерять?</label>
-                        <input type="text" class="form-control form-control-input" name="measure" id="measure">
+                        <label for="whatEliminate">Что будем делать?</label>
+                        <input type="text" class="form-control form-control-input" name="whatEliminate" id="whatEliminate" required maxlength="1000">
                     </div>
                     <div class="form-group">
-                        <label for="WhenHappen">Какой результат хотим получить?</label>
-                        <input type="text" class="form-control form-control-input" name="result" id="result">
+                        <label for="measure">В чем будем измерять?</label>
+                        <input type="text" class="form-control form-control-input" name="measure" id="measure" required maxlength="1000">
                     </div>
                     <div class="form-group">
-                        <label for="HowOften">Когда хотим его получить?</label>
-                        <input type="text" class="form-control form-control-input" name="whenGetResult" id="whenGetResult">
+                        <label for="result">Какой результат хотим получить?</label>
+                        <input type="text" class="form-control form-control-input" name="result" id="result" required maxlength="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="whenGetResult">Когда хотим его получить?</label>
+                        <input type="text" class="form-control form-control-input" name="whenGetResult" id="whenGetResult" required maxlength="1000">
                     </div>
 
                     <div class="form-group">
-                        <label for="problemText">Цель</label>
-                        <textarea class="form-control" rows="5" name="GoalText" id="goalText" placeholder="Сформулируйте цель"></textarea>
+                        <label for="goalText">Цель</label>
+                        <textarea class="form-control" rows="5" name="GoalText" id="goalText" placeholder="Сформулируйте цель" required maxlength="1000"></textarea>
                     </div>
 
 

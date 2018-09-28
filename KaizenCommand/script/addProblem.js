@@ -105,25 +105,28 @@ $(document).ready(function () {
         location.href = 'problem.html';
     });
 
+    $('#form').validate();
+
     $('#saveProblem').on('click', function () {
-        var dataToBeSent = $("form").serializeArray();
-        var commandId = localStorage.getItem('commandId');
-        dataToBeSent.push({ name: 'commandId', value: commandId });
-        dataToBeSent = $.grep(dataToBeSent, function (e) {
-            return e.name !== 'wasWarked';
-        });
+        if ($("#form").valid()) {
+            var dataToBeSent = $("form").serializeArray();
+            var commandId = localStorage.getItem('commandId');
+            dataToBeSent.push({ name: 'commandId', value: commandId });
+            dataToBeSent = $.grep(dataToBeSent, function (e) {
+                return e.name !== 'wasWarked';
+            });
 
-        dataToBeSent.push({ name: 'wasWarked', value: wasWark });
-        dataToBeSent.push({ name: 'problemId', value: problemId });
+            dataToBeSent.push({ name: 'wasWarked', value: wasWark });
+            dataToBeSent.push({ name: 'problemId', value: problemId });
 
-        $.post("http://localhost:64378/Service1.svc/SetProblems", dataToBeSent, function (data, textStatus) {
+            $.post("http://localhost:64378/Service1.svc/SetProblems", dataToBeSent, function (data, textStatus) {
 
-            if (textStatus === "success") {
-                alert("Проблема добавлена!");
-            }
-        });
+                if (textStatus === "success") {
+                    alert("Проблема добавлена!");
+                }
+            });
 
-
+        }
 
     });
 

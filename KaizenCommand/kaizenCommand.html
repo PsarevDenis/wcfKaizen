@@ -8,8 +8,11 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.validate.js"></script>
+    <script src="script/additional-methods.js"></script>
+    <script src="script/messages_ru.min.js"></script>
     <script src="script/kaizenCommand.js"></script>
-    <script src="script/jquery.orgchart.js"></script>
+    
 </head>
 <body>
     <header class="header">
@@ -20,37 +23,37 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="problem.html" method="LINK">
+                <form class="col-12 form-container" id="form">
                     <div class="form-group">
                         <label for="departmentId">Производство, цех</label>
-                        <select class="form-control form-control-input" id="departmentId" name="departmentId"></select>
+                        <select class="form-control form-control-input" id="departmentId" name="departmentId" required></select>
 
                     </div>
                     <div class="form-group">
                         <label for="commandName">Название проекта</label>
-                        <input type="text" class="form-control form-control-input" name="commandName" id="commandName" placeholder="Сформулируйте тему для работы команды">
+                        <input type="text" class="form-control form-control-input" name="commandName" id="commandName" required maxlength="1000" placeholder="Сформулируйте тему для работы команды">
                     </div>
                     <div class="form-group">
                         <label for="commandTypeId">Уровень Кайдзен команды</label>
-                        <select class="form-control form-control-input" id="commandTypeId" name="commandTypeId"></select>
+                        <select class="form-control form-control-input" id="commandTypeId" name="commandTypeId" required></select>
 
                     </div>
                     <div class="form-group">
                         <label for="customer">Заказчик</label>
-                        <input type="text" class="form-control form-control-input" name="customer" id="customer" placeholder="ФИО">
+                        <input type="text" class="form-control form-control-input" name="person" id="customer" required placeholder="Ф И О, должность">
                     </div>
                     <div class="form-group">
                         <label for="leader">Лидер</label>
-                        <input type="text" class="form-control form-control-input" name="leader" id="leader" placeholder="ФИО">
+                        <input type="text" class="form-control form-control-input" name="leader" id="leader" required placeholder="Ф И О, должность">
                     </div>
                     <div class="form-group">
                         <label for="subject">Цель Кайдзен команды</label>
-                        <textarea class="form-control" rows="5" name="subject" id="subject" placeholder="Сформулируйте цель"></textarea>
+                        <textarea class="form-control" rows="5" name="subject" id="subject" required placeholder="Сформулируйте цель"></textarea>
 
                     </div>
                     <div class="form-group dynamic-stuff">
                         <label for="member">Участники</label>
-                        <input type="text" class="form-control dynamic-element form-control-input" name="member" id="member" placeholder="ФИО, max 12">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="member" maxlength="1000" required id="member" placeholder="Ф И О, должность, max 12">
 
                     </div>
                     <div class="form-group">

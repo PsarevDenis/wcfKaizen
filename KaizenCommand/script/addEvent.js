@@ -85,24 +85,29 @@ $(document).ready(function () {
         altFormat: 'yy-mm-dd'
     });
     
+    $('#form').validate();
+    
     $('#saveEvent').on('click', function () {
-        var dataToBeSent = $("form").serializeArray();
-        dataToBeSent.push({ name: 'commandId', value: commandId });
-        dataToBeSent = $.grep(dataToBeSent, function (e) {
-            return e.name !== 'implemantation';
-        });
+        if ($("#form").valid()) {
 
-        dataToBeSent.push({ name: 'implemantation', value: implemantation });
-        dataToBeSent.push({ name: 'eventId', value: eventId });
+            var dataToBeSent = $("form").serializeArray();
+            dataToBeSent.push({ name: 'commandId', value: commandId });
+            dataToBeSent = $.grep(dataToBeSent, function (e) {
+                return e.name !== 'implemantation';
+            });
 
-        console.log(dataToBeSent);
+            dataToBeSent.push({ name: 'implemantation', value: implemantation });
+            dataToBeSent.push({ name: 'eventId', value: eventId });
+            
+            $.post("http://localhost:64378/Service1.svc/SetEvent", dataToBeSent, function (data, textStatus) {
 
-        $.post("http://localhost:64378/Service1.svc/SetEvent", dataToBeSent, function (data, textStatus) {
+                if (textStatus === "success") {
+                    alert("Мероприятие добавлена!");
+                }
+            });
 
-            if (textStatus === "success") {
-                alert("Мероприятие добавлена!");
-            }
-        });
+        }
+        
 
     });
 

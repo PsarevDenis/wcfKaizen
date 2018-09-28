@@ -42,23 +42,43 @@ $(document).ready(function () {
         
     });
 
+
     $('#saveRootCause').on('click', function () {
 
         var data = org_chart.getData();
+        var total = 0;
 
         jQuery.each(data, function (index, value) {
-            var dataToBeSent = $('#rootCauses').serializeArray();
-            dataToBeSent.push({ name: 'cause', value: value.name });
-            dataToBeSent.push({ name: 'classifier', value: value.classifier });
-            dataToBeSent.push({ name: 'prioriti', value: value.prioritizing });
-            dataToBeSent.push({ name: 'problemId', value: problemId });
-            
-            $.post("http://localhost:64378/Service1.svc/SetRootCauses", dataToBeSent, function (data, textStatus) {
-                if (textStatus === "success") {
-                    alert("Причина добавлена!");
-                }
-            });
+
+            total += parseFloat(value.prioritizing);
         });
+
+        if (total === 100) {
+            jQuery.each(data, function (index, value) {
+                var dataToBeSent = $('#rootCauses').serializeArray();
+                dataToBeSent.push({ name: 'cause', value: value.name });
+                dataToBeSent.push({ name: 'classifier', value: value.classifier });
+                dataToBeSent.push({ name: 'prioriti', value: value.prioritizing });
+                dataToBeSent.push({ name: 'problemId', value: problemId });
+
+                $.post("http://localhost:64378/Service1.svc/SetRootCauses", dataToBeSent, function (data, textStatus) {
+                    if (textStatus === "success") {
+                        alert("Причина добавлена!");
+                    }
+                });
+            });
+        }
+        else {
+            alert('Сумма приоритетов должна быть равна 100%!')
+        }
+        
+        
+    });
+
+
+    $('#back').on('click', function () {
+
+        location.href = 'problem.html';
     });
 
 

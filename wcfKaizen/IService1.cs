@@ -572,6 +572,8 @@ namespace wcfKaizen
     public class KaizenGoals
     {
         private int goalId;
+        private int rootCause;
+        private string cause;
         private string whatEliminate;
         private string measure;
         private string result;
@@ -589,6 +591,34 @@ namespace wcfKaizen
             set
             {
                 goalId = value;
+            }
+        }
+
+        [DataMember]
+        public int RootCause
+        {
+            get
+            {
+                return rootCause;
+            }
+
+            set
+            {
+                rootCause = value;
+            }
+        }
+
+        [DataMember]
+        public string Cause
+        {
+            get
+            {
+                return cause;
+            }
+
+            set
+            {
+                cause = value;
             }
         }
 
@@ -667,7 +697,10 @@ namespace wcfKaizen
     public class KaizenEvent
     {
         private int id;
+        private int kaizenGoal;
+        private string goal;
         private string kaIzenEvent;
+        private int causeId;
         private string cause;
         private bool implementation;
         private string responsible;
@@ -690,6 +723,34 @@ namespace wcfKaizen
         }
 
         [DataMember]
+        public int KaizenGoal
+        {
+            get
+            {
+                return kaizenGoal;
+            }
+
+            set
+            {
+                kaizenGoal = value;
+            }
+        }
+
+        [DataMember]
+        public string Goal
+        {
+            get
+            {
+                return goal;
+            }
+
+            set
+            {
+                goal = value;
+            }
+        }
+
+        [DataMember]
         public string KaIzenEvent
         {
             get
@@ -700,6 +761,20 @@ namespace wcfKaizen
             set
             {
                 kaIzenEvent = value;
+            }
+        }
+
+        [DataMember]
+        public int CauseId
+        {
+            get
+            {
+                return causeId;
+            }
+
+            set
+            {
+                causeId = value;
             }
         }
 

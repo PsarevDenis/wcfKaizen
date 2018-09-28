@@ -8,9 +8,10 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.validate.js"></script>
+    <script src="script/additional-methods.js"></script>
+    <script src="script/messages_ru.min.js"></script>
     <script src="script/addCause.js"></script>
-    <script src="script/jquery.cookie.js"></script>
-    <script src="script/jquery.orgchart.js"></script>
 </head>
 <body>
     <header class="header">
@@ -21,21 +22,21 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" method="LINK">
+                <form class="col-12 form-container" id="form">
 
                     <div class="form-group">
                         <label for="rootCaus">Корневая причина</label>
-                        <input type="text" class="form-control form-control-input" name="cause" id="cause">
+                        <input type="text" class="form-control form-control-input" name="cause" id="cause" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="classifier">Классификатор</label>
-                        <select class="form-control form-control-input" id="classifier" name="classifier">
+                        <select class="form-control form-control-input" id="classifier" name="classifier" required>
                         </select>
 
                     </div>
                     <div class="form-group">
                         <label for="prioritizing">Приоритезация, %</label>
-                        <input type="text" class="form-control form-control-input" name="prioriti" id="prioriti">
+                        <input type="text" class="form-control form-control-input" name="prioriti" id="prioriti" required placeholder="Приоритет в процентах">
                     </div>
 
                     <div class="form-group">

@@ -127,8 +127,11 @@ namespace wcfKaizen
                 while (reader.Read())
                 {
                     kaizenEvent.Id = eventId;
+                    kaizenEvent.KaizenGoal = int.Parse(reader["goalId"].ToString());
+                    kaizenEvent.Goal = reader["goal"].ToString();
                     kaizenEvent.KaIzenEvent = reader["Event"].ToString();
-                    kaizenEvent.Cause = reader["Cause"].ToString();
+                    kaizenEvent.CauseId = int.Parse(reader["rootCauseId"].ToString());
+                    kaizenEvent.Cause = reader["cause"].ToString();
                     kaizenEvent.Implementation = bool.Parse(reader["Implementation"].ToString());
                     kaizenEvent.Responsible = reader["Responsible"].ToString();
                     kaizenEvent.PlanDate = reader["PlanDate"].ToString();
@@ -163,6 +166,8 @@ namespace wcfKaizen
                 while (reader.Read())
                 {
                     kaizenGoals.GoalId = goalId;
+                    kaizenGoals.RootCause = int.Parse(reader["rootCauseId"].ToString());
+                    kaizenGoals.Cause = reader["cause"].ToString();
                     kaizenGoals.WhatEliminate = reader["WhatEliminate"].ToString();
                     kaizenGoals.Measure = reader["Measure"].ToString();
                     kaizenGoals.Result = reader["Result"].ToString();
@@ -301,8 +306,11 @@ namespace wcfKaizen
                     list.Add(new KaizenEvent()
                     {
                         Id = int.Parse(reader["Id"].ToString()),
+                        KaizenGoal = int.Parse(reader["goalId"].ToString()),
+                        Goal = reader["goal"].ToString(),
                         KaIzenEvent = reader["Event"].ToString(),
-                        Cause = reader["Cause"].ToString(),
+                        CauseId = int.Parse(reader["rootCauseId"].ToString()),
+                        Cause = reader["cause"].ToString(),
                         Implementation = bool.Parse(reader["Implementation"].ToString()),
                         Responsible = reader["Responsible"].ToString(),
                         PlanDate = reader["PlanDate"].ToString(),
@@ -341,6 +349,8 @@ namespace wcfKaizen
                     list.Add(new KaizenGoals()
                     {
                         GoalId = int.Parse(reader["Id"].ToString()),
+                        RootCause = int.Parse(reader["rootCauseId"].ToString()),
+                        Cause = reader["cause"].ToString(),
                         WhatEliminate = reader["WhatEliminate"].ToString(),
                         Measure = reader["Measure"].ToString(),
                         Result = reader["Result"].ToString(),
@@ -604,6 +614,7 @@ namespace wcfKaizen
                 cmd.Parameters.Add("@eventId", SqlDbType.Int).Value = nvc["eventId"];
                 cmd.Parameters.Add("@event", SqlDbType.NVarChar).Value = nvc["kaizenEvent"];
                 cmd.Parameters.Add("@rootCauseId", SqlDbType.Int).Value = nvc["rootCauseId"];
+                cmd.Parameters.Add("@goalId", SqlDbType.Int).Value = nvc["goalId"];
                 cmd.Parameters.Add("@implemantation", SqlDbType.Bit).Value = bool.Parse(nvc["implemantation"]) == true ? 1 : 0;
                 cmd.Parameters.Add("@responsible", SqlDbType.NVarChar).Value = nvc["responsible"];
                 cmd.Parameters.Add("@planDate", SqlDbType.Date).Value = nvc["planDate"];
@@ -639,6 +650,7 @@ namespace wcfKaizen
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
                 cmd.Parameters.Add("@goalId", SqlDbType.Int).Value = nvc["goalId"];
+                cmd.Parameters.Add("@rootCauseId", SqlDbType.Int).Value = nvc["rootCauseId"];
                 cmd.Parameters.Add("@whatEliminate", SqlDbType.NVarChar).Value = nvc["whatEliminate"];
                 cmd.Parameters.Add("@measure", SqlDbType.NVarChar).Value = nvc["measure"];
                 cmd.Parameters.Add("@result", SqlDbType.NVarChar).Value = nvc["result"];

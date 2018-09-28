@@ -7,6 +7,9 @@
 
     <link href="css/index.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
+    <script src="script/jquery.validate.js"></script>
+    <script src="script/additional-methods.js"></script>
+    <script src="script/messages_ru.min.js"></script>
     <script src="script/addProblem.js"></script>
 </head>
 <body>
@@ -18,42 +21,42 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" method="LINK">
+                <form class="col-12 form-container" id="form">
                     <div class="form-group">
                         <label for="whatHappen">Что происходит?</label>
-                        <input type="text" class="form-control form-control-input" name="whatHappen" id="whatHappen">
+                        <input type="text" class="form-control form-control-input" name="whatHappen" id="whatHappen" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="whereHappen">Где происходит?</label>
-                        <input type="text" class="form-control form-control-input" name="whereHappen" id="whereHappen">
+                        <input type="text" class="form-control form-control-input" name="whereHappen" id="whereHappen" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="WhenHappen">Когда происходит?</label>
-                        <input type="text" class="form-control form-control-input" name="whenHappen" id="whenHappen">
+                        <input type="text" class="form-control form-control-input" name="whenHappen" id="whenHappen" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="HowOften">Как часто?</label>
-                        <input type="text" class="form-control form-control-input" name="howOften" id="howOften">
+                        <input type="text" class="form-control form-control-input" name="howOften" id="howOften" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="HowDoYouKnow">Откуда известно?</label>
-                        <input type="text" class="form-control form-control-input" name="howDoYouKnow" id="howDoYouKnow">
+                        <input type="text" class="form-control form-control-input" name="howDoYouKnow" id="howDoYouKnow" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="WhyImportant">Почему это важно?</label>
-                        <input type="text" class="form-control form-control-input" name="whyImportant" id="whyImportant">
+                        <input type="text" class="form-control form-control-input" name="whyImportant" id="whyImportant" required maxlength="1000">
                     </div>
                     <div class="form-group">
                         <label for="Effect">Эффект</label>
-                        <input type="text" class="form-control form-control-input" name="effect" id="effect">
+                        <input type="text" class="form-control form-control-input" name="effect" id="effect" required maxlength="1000">
                     </div>
                     <div class="form-group dynamic-stuff">
                         <label for="fakt">Факты</label>
-                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt" id="fakt">
-                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt1" id="fakt1">
-                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt2" id="fakt2">
-                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt3" id="fakt3">
-                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt4" id="fakt4">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt" id="fakt" required maxlength="1000">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt1" id="fakt1" maxlength="1000">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt2" id="fakt2" maxlength="1000">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt3" id="fakt3" maxlength="1000">
+                        <input type="text" class="form-control dynamic-element form-control-input" name="fakt4" id="fakt4" maxlength="1000">
                     </div>
                     
                     <div class="form-group">
@@ -63,21 +66,21 @@
                     <div id="checkboxWorked">
                         <div class="form-group">
                             <label for="HowSolveProblem">Как решали проблему?</label>
-                            <input type="text" class="form-control form-control-input" name="howSolveProblem" id="howSolveProblem">
+                            <input type="text" class="form-control form-control-input" name="howSolveProblem" id="howSolveProblem" maxlength="1000">
                         </div>
                         <div class="form-group">
                             <label for="WhatIdeasIdWorked">Какие идеи выработаны?</label>
-                            <input type="text" class="form-control form-control-input" name="whatIdeasIdWorked" id="whatIdeasIdWorked">
+                            <input type="text" class="form-control form-control-input" name="whatIdeasIdWorked" id="whatIdeasIdWorked" maxlength="1000">
                         </div>
                         <div class="form-group">
                             <label for="WhyIdeasNotImplemanted">Почему идеи не реализованы?</label>
-                            <input type="text" class="form-control form-control-input" name="whyIdeasNotImplemanted" id="whyIdeasNotImplemanted">
+                            <input type="text" class="form-control form-control-input" name="whyIdeasNotImplemanted" id="whyIdeasNotImplemanted" maxlength="1000">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="problemText">Формулировка проблемы</label>
-                        <textarea class="form-control" rows="5" name="problemText" id="problemText" placeholder="Сформулируйте проблему"></textarea>
+                        <textarea class="form-control" rows="5" name="problemText" id="problemText" placeholder="Сформулируйте проблему" required maxlength="1000"></textarea>
 
                     </div>
 

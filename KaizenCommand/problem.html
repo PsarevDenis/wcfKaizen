@@ -9,9 +9,7 @@
     <link href="css/jquery.orgchart.css" rel="stylesheet"/>
     <link href="css/kaizenProblem.css" rel="stylesheet" />
     <script src="script/jquery.js"></script>
-    <script src="script/jquery.cookie.js"></script>
     <script src="script/kaizenProblem.js"></script>
-    <script src="script/jquery.orgchart.js"></script>
 </head>
 <body>
     <header class="header">
@@ -22,7 +20,7 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="kaizenIdea.html" method="LINK">
+                <form class="col-12 form-container">
 
                     <table id="problemTable" class="display" cellspacing="0" width="100%">
                         <thead>
@@ -39,7 +37,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="button" id="addProblem" class="control-button">Добавить проблему</button>
-                                <button type="submit" class="control-button">Далее</button>
+                                <button type="button" id="next" class="control-button">Далее</button>
                             </div>
                         </div>
                     </div>

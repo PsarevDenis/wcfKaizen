@@ -5,7 +5,7 @@
     $.ajaxSetup({
         async: false
     });
-
+    
     $.getJSON("http://localhost:64378/Service1.svc/GetDepartment", function (data) {
         $.each(data['GetDepartmentResult'], function (key, val) {
             $('#departmentId')
@@ -102,25 +102,30 @@
         location.href = 'problem.html';
     });
 
-    $('#formSub').on('click', function () {
-        var dataToBeSent = $("form").serialize();
+    $('#form').validate();
 
-        $.post("http://localhost:64378/Service1.svc/SetKaizenCommand", dataToBeSent, function (data, textStatus) {
-            
-            if (textStatus === "success") {
-                var commandId = $(data).children().html();
-                var n = dataToBeSent.indexOf("member");
-                var res = dataToBeSent.substring(n);
-                dataToBeSent = res + "&commandId=" + commandId;
-                                
-                $.post("http://localhost:64378/Service1.svc/SetCommandMembers", dataToBeSent, function (data, textStatus) {
-                    if (textStatus === "success") {
-                        localStorage.setItem('commandId', commandId);
-                        alert("Команда создана!");
-                    }
-                });
-            }
-        });
+    $('#formSub').on('click', function () {
+
+        if ($("#form").valid()) {  
+            var dataToBeSent = $("form").serialize();
+
+            $.post("http://localhost:64378/Service1.svc/SetKaizenCommand", dataToBeSent, function (data, textStatus) {
+
+                if (textStatus === "success") {
+                    var commandId = $(data).children().html();
+                    var n = dataToBeSent.indexOf("member");
+                    var res = dataToBeSent.substring(n);
+                    dataToBeSent = res + "&commandId=" + commandId;
+
+                    $.post("http://localhost:64378/Service1.svc/SetCommandMembers", dataToBeSent, function (data, textStatus) {
+                        if (textStatus === "success") {
+                            localStorage.setItem('commandId', commandId);
+                            alert("Команда создана!");
+                        }
+                    });
+                }
+            });
+        }       
         
     });
 });

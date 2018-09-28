@@ -37,5 +37,9 @@
         location.href = 'addProblem.html';
     });
 
+    $('#next').on('click', function () {
+        location.href = 'kaizenIdea.html';
+    });
+
 
 });

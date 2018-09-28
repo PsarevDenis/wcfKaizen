@@ -8,9 +8,7 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/jquery.orgchart.css" rel="stylesheet">
     <script src="script/jquery.js"></script>
-    <script src="script/jquery.cookie.js"></script>
     <script src="script/workWithEvent.js"></script>
-    <script src="script/jquery.orgchart.js"></script>
 </head>
 <body>
     <header class="header">
@@ -21,14 +19,15 @@
     <div class="container">
         <div class="content">
             <div class="row h-100">
-                <form class="col-12 form-container" action="anysisKk.html" method="LINK">
+                <form class="col-12 form-container">
 
                     <table id="eventTable" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Корневая причина</th>
+                                <th>Задача</th>
                                 <th>Мероприятие</th>
-                                <th>На корневую причину</th>
                                 <th>В реализации</th>
                                 <th>Отвественный</th>
                                 <th>План срок</th>
@@ -42,7 +41,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="button"  class="control-button" id="addEvent">Добавить мероприятие</button>
-                                <button type="submit" class="control-button">Далее</button>
+                                <button type="button" class="control-button" id="next">Далее</button>
                             </div>
                         </div>
                     </div>

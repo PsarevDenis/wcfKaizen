@@ -10,6 +10,8 @@
         $.each(data['GetListEventsResult'], function (key, val) {
 
             var id = val['Id'];
+            var cause = val['Cause'];
+            var goal = val['Goal'];
             var KaIzenEvent = val['KaIzenEvent'];
             var Cause = val['Cause'];
             var Implementation = val['Implementation'] === true? 'Да': 'Нет';
@@ -18,7 +20,7 @@
             var FaktDate = val['FaktDate'].replace(/:/g, '').replace('00000', '');
             var Resource = val['Resource'];
 
-            var newRow = '<tr><td> <a href="addEvent.html?eventId=' + id + '" class="problem-id">' + id + '</a></td><td>' + KaIzenEvent + '</td><td>' + Cause + '</td><td>' + Implementation + '</td><td>' + Responsible + '</td><td>' + PlanDate + '</td><td>' + FaktDate + '</td><td>' + Resource +'</td></tr>';
+            var newRow = '<tr><td> <a href="addEvent.html?eventId=' + id + '" class="problem-id">' + id + '</a></td><td>' + cause + '</td><td>' + goal + '</td><td>' + KaIzenEvent + '</td><td>' + Cause + '</td><td>' + Implementation + '</td><td>' + Responsible + '</td><td>' + PlanDate + '</td><td>' + FaktDate + '</td><td>' + Resource +'</td></tr>';
 
             $('#eventTable').append(newRow);
         });
@@ -26,6 +28,10 @@
 
     $('#addEvent').on('click', function () {
         location.href = 'addEvent.html';
+    });
+
+    $('#next').on('click', function () {
+        location.href = 'anysisKk.html';
     });
 
 
