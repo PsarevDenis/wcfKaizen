@@ -112,6 +112,8 @@
         if ($("#form").valid()) {  
             var dataToBeSent = $("form").serialize();
 
+            console.log(dataToBeSent);
+
             $.post("http://localhost:64378/Service1.svc/SetKaizenCommand", dataToBeSent, function (data, textStatus) {
 
                 if (textStatus === "success") {
