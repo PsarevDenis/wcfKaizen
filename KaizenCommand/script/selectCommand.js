@@ -1,8 +1,5 @@
 ﻿$(document).ready(function () {
 
-
-    $('#form').validate();
-
     $.getJSON("http://localhost:64378/Service1.svc/GetListKaizenCommand", function (data) {
         $.each(data['GetListKaizenCommandResult'], function (key, val) {
 

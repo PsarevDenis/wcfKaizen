@@ -1,0 +1,51 @@
+﻿body{
+    width: 98vw;
+    height: 98vh;
+}
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    height: 100%;
+    width: 100%;
+}
+
+    .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: black;
+    }
+
+    .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: black;
+    }
+
+    .tg .tg-s268 {
+        text-align: center;
+        height: 10vh;
+    }
+
+    .tg .tg-s269 {
+        vertical-align: top;
+        text-align: left;
+        height: 35vh;
+    }
+
+    .tg .tg-s270 {
+        vertical-align: top;
+        text-align: left;
+        height: 45vh;
+    }

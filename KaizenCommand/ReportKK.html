@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Формат А3</title>
+    <link href="css/report.css" rel="stylesheet">
+    <script src="script/jquery.js"></script>
+    <script src="script/ReportKK.js"></script>
+</head>
+<body>
+    <table class="tg">
+        <colgroup>
+            <col style="width: 10vw">
+            <col style="width: 10vw">
+            <col style="width: 10vw">
+            <col style="width: 10vw">
+            <col style="width: 10vw">
+            <col style="width: 10vw">
+            <col style="width: 10vw">
+        </colgroup>
+        <tr>
+            <td class="tg-s268" rowspan="2">А3</td>
+            <td class="tg-s268" colspan="2" rowspan="2" id="customer">Координатор: </td>
+            <td class="tg-s268" colspan="2" rowspan="2" id="kaizenCommand">Команда: </td>
+            <td class="tg-s268" colspan="2" rowspan="2" id="leader">Консультант: </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td class="tg-s269" colspan="3" rowspan="2"><p id="kaizenCommandName">Тема: </p><p id="kaizenCommandProblem">Проблема: </p><p id="kaizenCommandGoal">Цель: </p></td>
+            <td class="tg-s269" colspan="4" rowspan="2" id="fakts">Факты:</td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td class="tg-s270" colspan="3" rowspan="2" id="rootCauses">Первопричины: </td>
+            <td class="tg-s270" colspan="4" rowspan="2" >
+
+                <table id="eventTable">
+                    <thead>
+                        <tr>
+                            
+                            <th>Мероприятие</th>
+                            
+                            <th>Отвественный</th>
+                            <th>План срок</th>
+                            
+                        </tr>
+                    </thead>
+                </table>
+
+            </td>
+        </tr>
+        <tr></tr>
+    </table>
+
+</body>
+</html>

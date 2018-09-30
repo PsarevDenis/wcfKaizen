@@ -27,11 +27,11 @@
 
     var commandId = localStorage.getItem('commandId');
     if (commandId !== 0) {
-       
+
         $.getJSON("http://localhost:64378/Service1.svc/GetKaizenCommand?commandId=" + commandId, function (data) {
 
             $.each(data['GetKaizenCommandResult'], function (key, val) {
-                
+
                 switch (key) {
                     case 'CommandName':
                         $('#commandName').val(val);
@@ -53,9 +53,9 @@
                         break;
                     default:
                 }
-                
+
             });
-            
+
         });
 
         $.getJSON("http://localhost:64378/Service1.svc/GetKaizenCommandMembers?commandId=" + commandId, function (data) {
@@ -77,6 +77,9 @@
 
         });
 
+    }
+    else {
+        commandId = 0;
     }
 
     $('.add-one').click(function () {

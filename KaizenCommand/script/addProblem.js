@@ -119,6 +119,7 @@ $(document).ready(function () {
             dataToBeSent.push({ name: 'wasWarked', value: wasWark });
             dataToBeSent.push({ name: 'problemId', value: problemId });
 
+
             $.post("http://localhost:64378/Service1.svc/SetProblems", dataToBeSent, function (data, textStatus) {
 
                 if (textStatus === "success") {

@@ -61,7 +61,7 @@ $(document).ready(function () {
     });
 
     $('#findRootCause').on('click', function () {
-        location.href = 'causesConstructor.html';
+        location.href = 'causesConstructor.html?problemId=' + problemId;
 
     });
 

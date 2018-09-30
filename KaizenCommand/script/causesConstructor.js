@@ -60,6 +60,9 @@ $(document).ready(function () {
                 dataToBeSent.push({ name: 'classifier', value: value.classifier });
                 dataToBeSent.push({ name: 'prioriti', value: value.prioritizing });
                 dataToBeSent.push({ name: 'problemId', value: problemId });
+                dataToBeSent.push({ name: 'causeId', value: 0 });
+
+                console.log(dataToBeSent);
 
                 $.post("http://localhost:64378/Service1.svc/SetRootCauses", dataToBeSent, function (data, textStatus) {
                     if (textStatus === "success") {
@@ -69,7 +72,7 @@ $(document).ready(function () {
             });
         }
         else {
-            alert('Сумма приоритетов должна быть равна 100%!')
+            alert('Сумма приоритетов должна быть равна 100%!');
         }
         
         

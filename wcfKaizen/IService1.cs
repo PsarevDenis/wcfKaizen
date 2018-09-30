@@ -49,8 +49,8 @@ namespace wcfKaizen
         List<KaizenEvent> GetListEvents(int commandId);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetListGoals?commandId={commandId}")]
-        List<KaizenGoals> GetListGoals(int commandId);
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetListGoals?commandId={commandId}&rootCauseId={rootCauseId}")]
+        List<KaizenGoals> GetListGoals(int commandId, int rootCauseId);
 
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetListProblem?commandId={commandId}")]
@@ -572,6 +572,8 @@ namespace wcfKaizen
     public class KaizenGoals
     {
         private int goalId;
+        private int problemId;
+        private string problemText;
         private int rootCause;
         private string cause;
         private string whatEliminate;
@@ -591,6 +593,34 @@ namespace wcfKaizen
             set
             {
                 goalId = value;
+            }
+        }
+
+        [DataMember]
+        public int ProblemId
+        {
+            get
+            {
+                return problemId;
+            }
+
+            set
+            {
+                problemId = value;
+            }
+        }
+
+        [DataMember]
+        public string ProblemText
+        {
+            get
+            {
+                return problemText;
+            }
+
+            set
+            {
+                problemText = value;
             }
         }
 
@@ -697,6 +727,8 @@ namespace wcfKaizen
     public class KaizenEvent
     {
         private int id;
+        private int problemId;
+        private string problemText;
         private int kaizenGoal;
         private string goal;
         private string kaIzenEvent;
@@ -719,6 +751,35 @@ namespace wcfKaizen
             set
             {
                 id = value;
+            }
+        }
+
+
+        [DataMember]
+        public int ProblemId
+        {
+            get
+            {
+                return problemId;
+            }
+
+            set
+            {
+                problemId = value;
+            }
+        }
+
+        [DataMember]
+        public string ProblemText
+        {
+            get
+            {
+                return problemText;
+            }
+
+            set
+            {
+                problemText = value;
             }
         }
 

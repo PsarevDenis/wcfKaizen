@@ -127,6 +127,8 @@ namespace wcfKaizen
                 while (reader.Read())
                 {
                     kaizenEvent.Id = eventId;
+                    kaizenEvent.ProblemId = int.Parse(reader["problemId"].ToString());
+                    kaizenEvent.ProblemText = reader["problemText"].ToString();
                     kaizenEvent.KaizenGoal = int.Parse(reader["goalId"].ToString());
                     kaizenEvent.Goal = reader["goal"].ToString();
                     kaizenEvent.KaIzenEvent = reader["Event"].ToString();
@@ -166,6 +168,8 @@ namespace wcfKaizen
                 while (reader.Read())
                 {
                     kaizenGoals.GoalId = goalId;
+                    kaizenGoals.ProblemId = int.Parse(reader["problemId"].ToString());
+                    kaizenGoals.ProblemText = reader["problemText"].ToString();
                     kaizenGoals.RootCause = int.Parse(reader["rootCauseId"].ToString());
                     kaizenGoals.Cause = reader["cause"].ToString();
                     kaizenGoals.WhatEliminate = reader["WhatEliminate"].ToString();
@@ -326,7 +330,7 @@ namespace wcfKaizen
             return list;
         }
 
-        public List<KaizenGoals> GetListGoals(int commandId)
+        public List<KaizenGoals> GetListGoals(int commandId, int rootCauseId)
         {
             List<KaizenGoals> list = new List<KaizenGoals>();
 
@@ -339,6 +343,7 @@ namespace wcfKaizen
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = connection;
                 cmd.Parameters.Add("@commandId", SqlDbType.Int).Value = commandId;
+                cmd.Parameters.Add("@rootCauseId", SqlDbType.Int).Value = rootCauseId;
 
                 connection.Open();
 

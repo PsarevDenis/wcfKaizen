@@ -13,10 +13,138 @@ $(document).ready(function () {
     var commandId = localStorage.getItem('commandId');
     var eventId = $.urlParam('eventId');
 
+    $.ajaxSetup({
+        async: false
+    });
+
+    $.getJSON("http://localhost:64378/Service1.svc/GetListProblem?commandId=" + commandId, function (data) {
+        var i = 0;
+        $.each(data['GetListProblemResult'], function (key, val) {
+            var problemId = val['Id'];
+            var problemText = val['ProblemText'].substring(0, 100) + ' ...';
+
+            $('#problemId')
+                .append($("<option></option>")
+                    .val(problemId)
+                    .text(problemText));
+
+            if (i === 0) {
+
+                $.getJSON("http://localhost:64378/Service1.svc/GetListRootCauses?problemId=" + problemId, function (data) {
+
+                    $.each(data['GetListRootCausesResult'], function (key, val) {
+
+                        var causeId = val['CauseId'];
+                        var cause = val['Cause'];
+
+                        $('#rootCauseId')
+                            .append($("<option></option>")
+                                .val(causeId)
+                                .text(cause));
+
+
+                    });
+
+                });
+            }
+            else {
+                return false;
+            }
+
+            i++;
+
+        });
+
+    });
+
+
+    $('#problemId').on('change', function () {
+
+        $('#rootCauseId').find('option').remove();
+        $('#goalId').find('option').remove();
+
+        $.getJSON("http://localhost:64378/Service1.svc/GetListRootCauses?problemId=" + this.value, function (data) {
+            $.each(data['GetListRootCausesResult'], function (key, val) {
+                var causeId = val['CauseId'];
+                var cause = val['Cause'];
+
+                $('#rootCauseId')
+                    .append($("<option></option>")
+                        .val(causeId)
+                        .text(cause));
+
+                $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId + "&rootCauseId=" + causeId, function (data) {
+                    $.each(data['GetListGoalsResult'], function (key, val) {
+
+                        console.log(val);
+                        var goalId = val['GoalId'];
+                        var goalText = val['GoalText'];
+
+                        $('#goalId')
+                            .append($("<option></option>")
+                                .val(goalId)
+                                .text(goalText));
+                    });
+
+                });
+            });
+
+        });
+    });
+
+    $('#rootCauseId').on('change', function () {
+
+
+        $('#goalId').find('option').remove();
+
+        var rootCauseId = this.value;
+        $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId + "&rootCauseId=" + rootCauseId, function (data) {
+            $.each(data['GetListGoalsResult'], function (key, val) {
+
+                console.log(val);
+                var goalId = val['GoalId'];
+                var goalText = val['GoalText'];
+
+                $('#goalId')
+                    .append($("<option></option>")
+                        .val(goalId)
+                        .text(goalText));
+            });
+
+        });
+    });
+
     if (eventId !== null) {
         $.getJSON("http://localhost:64378/Service1.svc/GetEvent?eventId=" + eventId, function (data) {
             $.each(data['GetEventResult'], function (key, val) {
                 switch (key) {
+                    case 'ProblemId':
+                        $('#problemId').val(val);
+                        break;
+                    case 'CauseId':
+                        $('#rootCauseId').val(val);
+
+                        $('#goalId').find('option').remove();
+
+                        
+                        $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId + "&rootCauseId=" + val, function (data) {
+                            $.each(data['GetListGoalsResult'], function (key, val) {
+
+                                console.log(val);
+                                var goalId = val['GoalId'];
+                                var goalText = val['GoalText'];
+
+                                $('#goalId')
+                                    .append($("<option></option>")
+                                        .val(goalId)
+                                        .text(goalText));
+                            });
+
+                        });
+                        break;
+                    case 'KaizenGoal':
+                        $('#goalId').val(val);
+                        break;
                     case 'KaIzenEvent':
                         $('#kaizenEvent').val(val);
                         break;
@@ -60,18 +188,6 @@ $(document).ready(function () {
         }
     });
 
-    $.getJSON("http://localhost:64378/Service1.svc/GetListRootCause?commandId=" + commandId, function (data) {
-        $.each(data['GetListRootCauseResult'], function (key, val) {
-            var causeId = val['CauseId'];
-            var cause = val['Cause'];
-
-            $('#rootCauseId')
-                .append($("<option></option>")
-                    .val(causeId)
-                    .text(cause));
-        });
-
-    });
 
     $.datepicker.setDefaults($.datepicker.regional["ru"]);
 
@@ -96,8 +212,14 @@ $(document).ready(function () {
                 return e.name !== 'implemantation';
             });
 
+            dataToBeSent = $.grep(dataToBeSent, function (e) {
+                return e.name !== 'problemId';
+            });
+
             dataToBeSent.push({ name: 'implemantation', value: implemantation });
             dataToBeSent.push({ name: 'eventId', value: eventId });
+
+            console.log(dataToBeSent);
             
             $.post("http://localhost:64378/Service1.svc/SetEvent", dataToBeSent, function (data, textStatus) {
 

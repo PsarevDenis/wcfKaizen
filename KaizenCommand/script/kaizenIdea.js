@@ -2,9 +2,9 @@
 
     var commandId = localStorage.getItem('commandId');
 
-    $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId, function (data) {
+    $.getJSON("http://localhost:64378/Service1.svc/GetListGoals?commandId=" + commandId + "&rootCauseId=" + 0, function (data) {
 
-        console.log(data);
+        
         $.each(data['GetListGoalsResult'], function (key, val) {
 
             var ideaId = val['GoalId'];
@@ -21,8 +21,8 @@
         });
     });
 
-    $('#addProblem').on('click', function () {
-        location.href = 'addProblem.html';
+    $('#addIdea').on('click', function () {
+        location.href = 'addIdea.html';
     });
 
     $('#next').on('click', function () {
